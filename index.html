@@ -8,15 +8,25 @@
   </head>
   <body>
     <p>Spicy Uno Online</p>
-    <img src="res/cards/uno_card-wilddraw4.png" alt="Wild Card" width="200" height="250">
+    <img src="http://unocardinfo.victorhomedia.com/graphics/uno_card-wilddraw4.png" alt="Wild Card" width="200" height="250">
     <button type="button"
-      onclick="document.getElementById('demo').innerHTML = Attempting to create">
+      onclick="document.getElementById('demo').innerHTML = CreateFunction()">
       Create Game</button>
-    <p id="demo"></p>
     <button type="button"
-      onclick="document.getElementById('demo').innerHTML = Attempting to join">
+      onclick="document.getElementById('demo').innerHTML = JoinFunction()">
       Join Game</button>
-    <p id="demo"></p>
+    <p id="demo">Not doing much right now</p>
+    
+    
+    
+    <script>
+      function CreateFunction() { 
+        document.getElementById("demo").innerHTML = "Attempting to Create";
+      }
+      function JoinFunction() { 
+        document.getElementById("demo").innerHTML = "Attempting to Join";
+      }
+    </script>
   </body>
 </html>
 
