@@ -1,21 +1,44 @@
 <!doctype html>
 <html>
   <head>
-    <title>Title</title>
     <script type="text/javascript" src="main.js"></script>
+    <title>Suggestion Box</title>
     <style>
-      
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }      
     </style>
   </head>
   <body>
-    <p>Spicy Uno Online</p>
-    <img src="res/cards/uno_card-blue0.png" alt="Wild Card" width="200" height="250">
-    <button type="button"
+    <p>Suggestion Box</p>
+    <table>
+      <tr>
+        <th>Box Name</th>
+        <th><button type="button"
       onclick="CreateFunction()">
-      Create Game</button>
-    <button type="button"
+      Create Box</button></th>
+      </tr>
+      <tr>
+        <td>Books for Book Fair</td>
+        <td><button type="button"
       onclick="JoinFunction()">
-      Join Game</button>
+      Add Suggestion</button></td>
+      </tr>
+    </table>
+    
+    
     <p id="demo">Not doing much right now</p>
     
     
@@ -24,16 +47,17 @@
 </html>
 
 
+
 <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
 <script>
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyD8tchBo_kqZThQqPD1z3Zi89eH2Tp3PXo",
-    authDomain: "spicy-uno.firebaseapp.com",
-    databaseURL: "https://spicy-uno.firebaseio.com",
-    projectId: "spicy-uno",
-    storageBucket: "spicy-uno.appspot.com",
-    messagingSenderId: "496683357"
+    apiKey: "AIzaSyBJSpeiLpsALteamK8s4i86EPbVARLGLi0",
+    authDomain: "suggestion-box-c58b1.firebaseapp.com",
+    databaseURL: "https://suggestion-box-c58b1.firebaseio.com",
+    projectId: "suggestion-box-c58b1",
+    storageBucket: "suggestion-box-c58b1.appspot.com",
+    messagingSenderId: "608313282468"
   };
   firebase.initializeApp(config);
 </script>
