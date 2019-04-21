@@ -1,7 +1,7 @@
 
       function CreateFunction() { 
         document.getElementById("demo").innerHTML = <form action="/action_page.php">
-            First name: <input type="text" name="BoxName" value="Idea of sorts"><br>
+            Box Name: <input type="text" name="BoxName" value="Idea of sorts"><br>
             <input type="submit" value="Submit">
         </form>;
       }
