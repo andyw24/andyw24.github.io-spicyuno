@@ -9,7 +9,8 @@
 function createUser() {
 	var uName = "bob";
 	var pass = "ross";
-	firebase.database().ref('users/' + uName).set( {
+	var uid = "testID";
+	firebase.database().ref('users/' + uid).set( {
 		username: uName,
 		password: pass
 	});
