@@ -17,6 +17,9 @@
       Title: <input type="text" name="Suggestion Box Title" id="t"><br>
       Description: <input type="text" name="Suggestion Box Description" id="d"><br>
       <button type="button"onclick="createBox(document.getElementById('t').value, document.getElementById('d').value)">Create New Suggestion Box</button>
+      <br>
+      Delete this box: <input type="text" name="Suggestion Box Title" id="delete"><br>
+      <button type="button"onclick="deleteBox(document.getElementById('delete').value)">DeleteBox</button>
 
       <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
       <script type="text/javascript" src="main.js"></script>
