@@ -52,12 +52,20 @@
             });
             if (passWord.password === pass) {
               console.log("Successful Login"); //take to home page
-              currUser.innerHTML = uName;
+	      localStorage.setItem("currUsername", uName);
+              currUser.innerHTML = localStorage.getItem("currUsername");
+	      window.location.href="ListOfBoxes.html";
             } else {
               console.log("Invalid username or password"); //show invalid user/pass message
+	      var errorMessage = document.getElementById('error');
+	      errorMessage.innerHTML = "Invalid username or passoword";
             }
           } else {
             console.log("Invalid username or password"); //show invalid user/pass message
+	    
+	    var errorMessage = document.getElementById('error');
+	    errorMessage.innerHTML = "Invalid username or passoword";
+
           }
         });
       }
