@@ -6,14 +6,16 @@
   </head>
 
   <body>
-      <tr>
-        Username: <input type="text" name="Username" id="u"><br>
-        Password: <input type="password" name="Password" id="p"><br>
-        <button type="button"onclick="registerUser(document.getElementById('u').value, document.getElementById('p').value)">Register</button>
-      </tr>
-      <tr>
-        <button type="button"onclick="login(document.getElementById('u').value, document.getElementById('p').value)">Login</button>
-      </tr>
+      Username: <input type="text" name="Username" id="u"><br>
+      Password: <input type="password" name="Password" id="p"><br>
+      <button type="button"onclick="registerUser(document.getElementById('u').value, document.getElementById('p').value)">Register</button>
+      <button type="button"onclick="login(document.getElementById('u').value, document.getElementById('p').value)">Login</button>
+      <button type="button"onclick="logout()">Logout</button>
+      <br>
+      <h3>Logged in as: <var id="currUser"></var></h3>
+      <br>
+      Title: <input type="text" name="Suggestion Box Title" id="t"><br>
+      <button type="button"onclick="createBox(document.getElementById('t').value)">Create New Suggestion Box</button>
 
       <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
       <script type="text/javascript" src="main.js"></script>

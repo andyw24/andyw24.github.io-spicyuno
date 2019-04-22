@@ -18,12 +18,13 @@
       firebase.initializeApp(config);
 
       var myDatabase = firebase.database().ref();
+      var currUser = document.getElementById('currUser');
       //var testBig = document.getElementById('testBig');
       //myDatabase.child('users').on('value', snap => testBig.innerText = snap.val());
 
       function registerUser(uName, pass) {
       	var usersRef = myDatabase.child("users");
-      	var newUser = usersRef.push()
+      	var newUser = usersRef.child(uName);
         usersRef.orderByChild("username").equalTo(uName).on("value", function(snapshot) {
           if (snapshot.exists()) {
             console.log("Someone with that username already exists!"); //show taken user message
@@ -33,6 +34,7 @@
               username: uName
           	});
             console.log("New user registered"); //take to home page
+            currUser.innerHTML = uName;
           }
         });
 
@@ -50,6 +52,7 @@
             });
             if (passWord.password === pass) {
               console.log("Successful Login"); //take to home page
+              currUser.innerHTML = uName;
             } else {
               console.log("Invalid username or password"); //show invalid user/pass message
             }
@@ -58,3 +61,16 @@
           }
         });
       }
+
+      function logout() {
+        currUser.innerHTML = null;
+      }
+/*
+      function createBox(t) {
+        var path = "/users/" + currUser.innerText;
+        console.log(path);
+        var usersRef = myDatabase.child(path);
+        var boxRef = usersRef.child("my boxes");
+        boxRef.create({title: t});
+      }
+      */
