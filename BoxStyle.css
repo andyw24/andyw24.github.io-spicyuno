@@ -12,4 +12,16 @@ td, th {
 
 tr:nth-child(even) {
     background-color: #11aadf;
-}    
+}
+
+a:link, a:visited {
+  	background-color: #129060;
+  	color: white;
+  	padding: 15px 25px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+}
+a:hover, a:active {
+  	background-color: #0040dd;
+}
