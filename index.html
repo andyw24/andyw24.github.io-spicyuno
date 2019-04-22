@@ -18,7 +18,7 @@
 
       tr:nth-child(even) {
         background-color: #dddddd;
-      }      
+      }
     </style>
   </head>
   <body>
@@ -28,7 +28,7 @@
       <tr>
         <th>Box Name</th>
         <th><button type="button"
-      onclick="writeData()">
+      onclick="CreateFunction()">
       Create Box</button></th>
       </tr>
       <tr>
@@ -38,15 +38,15 @@
       Add Suggestion</button></td>
       </tr>
     </table>
-    
-    
+
+
     <p id="demo">Not doing much right now</p>
     <form action="/action_page.php">
         Box Name: <input type="text" name="BoxName" value="Example Box"><br>
         Box Summary: <input type="text" name="Summary" value="Example Description"><br>
         <input type="submit" value="Submit">
     </form>
-    
+
     <form action="/action_page.php">
       Suggestion: <input type="text" name="Suggestion" value="Example Suggestion"><br>
       <input type="submit" value="Submit">
@@ -59,11 +59,11 @@
       <input type="submit" value="Register">
     </form>
 
-    
-    
+
+
       </body>
-  
-  
+
+
   <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
   <script>
     // Initialize Firebase
