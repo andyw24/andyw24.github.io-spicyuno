@@ -6,17 +6,21 @@
         document.getElementById("demo").innerHTML = "Attempting to Join";
       }
 
-function createUser() {
+//firebase.initializeApp(config);
+var myDatabase = firebase.database();
+
+function writeData() {
 	var uName = "bob";
 	var pass = "ross";
 	var uid = "testID";
-	firebase.database().ref('users/' + uid).set( {
+	firebase.myDatabase().ref().child("users").child(uid).push().set( {
 		username: uName,
 		password: pass
 	});
+	document.getElementById("demo").innerHTML = "maybe";
 }
 
-
+/*
 function writeData() {
 	var usernameObject = {
 		username: bob
@@ -29,3 +33,4 @@ function writeData() {
             error(); // some error method
         });
 }
+*/
