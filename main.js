@@ -28,13 +28,20 @@
         usersRef.orderByChild("username").equalTo(uName).on("value", function(snapshot) {
           if (snapshot.exists()) {
             console.log("Someone with that username already exists!"); //show taken user message
+	    var errorMessage = document.getElementById('error');
+	    errorMessage.innerHTML = "Someone with that username already exists";
+
           } else {
             newUser.set({
           		password: pass,
               username: uName
           	});
             console.log("New user registered"); //take to home page
-            currUser.innerHTML = uName;
+            //currUser.innerHTML = uName;
+            localStorage.setItem("currUsername", uName);
+            currUser.innerHTML = localStorage.getItem("currUsername");
+	    window.location.href="ListOfBoxes.html";
+
           }
         });
 
@@ -71,7 +78,8 @@
       }
 
       function logout() {
-        currUser.innerHTML = null;
+        //currUser.innerHTML = null;
+	window.location.href="index.html";
       }
 
       function createBox(t, d) {
