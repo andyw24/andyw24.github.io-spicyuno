@@ -18,8 +18,14 @@
       Description: <input type="text" name="Suggestion Box Description" id="d"><br>
       <button type="button"onclick="createBox(document.getElementById('t').value, document.getElementById('d').value)">Create New Suggestion Box</button>
       <br>
-      Delete this box: <input type="text" name="Suggestion Box Title" id="delete"><br>
+      Delete this box: <input type="text" name="delete" id="delete"><br>
       <button type="button"onclick="deleteBox(document.getElementById('delete').value)">DeleteBox</button>
+      <br>
+      <br>
+      Box Title: <input type="text" name="BoxTitle" id="sugTitle"><br>
+      Box Owner: <input type="text" name="BoxOwner" id="sugOwner"><br>
+      Make Suggestion: <input type="text" name="Suggestion" id="sug"><br>
+      <button type="button"onclick="addSuggestion(document.getElementById('sugOwner').value, document.getElementById('sugTitle').value, document.getElementById('sug').value)">Make Suggestion</button>
 
       <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
       <script type="text/javascript" src="main.js"></script>
