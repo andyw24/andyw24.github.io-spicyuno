@@ -4,6 +4,32 @@ body{
 .logOut{
   text-align: right;
 }
+
+.outbutton{
+  background-color: #3333EE;
+  border: none;
+  color: white;
+  padding: 13px 19px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 2px 2px;
+  cursor: pointer;
+}
+
+.delbutton {
+  background-color: #EE4444;
+  border: none;
+  color: black;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
