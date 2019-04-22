@@ -86,10 +86,40 @@
               description: d,
               owner: currUser.innerText
             });
+            var userRef = myDatabase.child("/users/" + currUser.innerText + "/my boxes");
+            userRef.child(t).set({title: t});
           }
         });
       }
 
       function deleteBox(t) {
-        
+        var allBoxesRef = myDatabase.child("suggestion boxes");
+        var newBox = allBoxesRef.child(currUser.innerText+":"+t);
+        newBox.once("value").then(function(snapshot) {
+          if (snapshot.exists()) {
+            newBox.remove();
+            var userRef = myDatabase.child("/users/" + currUser.innerText + "/my boxes");
+            userRef.child(t).remove();
+          } else {
+            console.log("This box does not exist") //this error message should be impossible to reach via the website
+          }
+        });
+      }
+
+      /*
+      parameters:
+        o: owner of the suggestion box you are making a suggestion to
+        t: title of the suggestion box you are suggesting to
+        s: the contents of the suggestion
+      */
+      function addSuggestion(o, t, s) {
+        var allBoxesRef = myDatabase.child("suggestion boxes");
+        var thisBox = allBoxesRef.child(o+":"+t);
+        thisBox.once("value").then(function(snapshot) {
+          if (snapshot.exists()) {
+            thisBox.child("suggestions").push().set({suggestion: s});
+          } else {
+            console.log("This box does not exist") //this error message should be impossible to reach via the website
+          }
+        });
       }

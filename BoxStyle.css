@@ -1,15 +1,30 @@
+body{
+  background-color: #ffeedf;
+}
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width: 75%;
 }
 
 td, th {
-    border: 1px solid #dddddd;
+    border: 3px solid #a0dddd;
     text-align: left;
      padding: 8px;
 }
 
 tr:nth-child(even) {
-    background-color: #dd00dd;
-}    
+    background-color: #11aadf;
+}
+
+a:link, a:visited {
+  	background-color: #129060;
+  	color: white;
+  	padding: 15px 25px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+}
+a:hover, a:active {
+  	background-color: #0040dd;
+}
