@@ -1,6 +1,9 @@
 body{
   background-color: #ffeedf;
 }
+.logOut{
+  text-align: right;
+}
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
