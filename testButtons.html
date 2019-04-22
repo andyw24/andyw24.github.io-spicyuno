@@ -15,7 +15,8 @@
       <h3>Logged in as: <var id="currUser"></var></h3>
       <br>
       Title: <input type="text" name="Suggestion Box Title" id="t"><br>
-      <button type="button"onclick="createBox(document.getElementById('t').value)">Create New Suggestion Box</button>
+      Description: <input type="text" name="Suggestion Box Description" id="d"><br>
+      <button type="button"onclick="createBox(document.getElementById('t').value, document.getElementById('d').value)">Create New Suggestion Box</button>
 
       <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
       <script type="text/javascript" src="main.js"></script>

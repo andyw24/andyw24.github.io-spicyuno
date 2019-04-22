@@ -65,12 +65,23 @@
       function logout() {
         currUser.innerHTML = null;
       }
-/*
-      function createBox(t) {
-        var path = "/users/" + currUser.innerText;
-        console.log(path);
-        var usersRef = myDatabase.child(path);
-        var boxRef = usersRef.child("my boxes");
-        boxRef.create({title: t});
+
+      function createBox(t, d) {
+        var allBoxesRef = myDatabase.child("suggestion boxes");
+        var newBox = allBoxesRef.child(currUser.innerText+":"+t);
+        newBox.once("value").then(function(snapshot) {
+          if (snapshot.exists()) {
+            console.log("A box with this title already exists!") //show error message for user trying to create a box they already have
+          } else {
+            newBox.set({
+              title: t,
+              description: d,
+              owner: currUser.innerText
+            });
+          }
+        });
       }
-      */
+
+      function deleteBox(t) {
+        
+      }
