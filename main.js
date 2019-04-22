@@ -15,4 +15,17 @@ function createUser() {
 		password: pass
 	});
 }
- 
+
+
+function writeData() {
+	var usernameObject = {
+		username: bob
+	};
+	firebase.database().ref('users').push().set(usernameObject)
+        .then(function(snapshot) {
+            document.getElementById("demo").innerHTML = "maybe"; // some success method
+        }, function(error) {
+            console.log('error' + error);
+            error(); // some error method
+        });
+}
