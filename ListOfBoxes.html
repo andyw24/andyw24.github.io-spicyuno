@@ -11,6 +11,14 @@
 				<headerProfile type='button'onclick="window.location.href = 'Profile.html';">Profile</headerProfile>
 				<headerLogout type='button'onclick="logout()">Logout</headerLogout>
 			</div>
+			<div class ="form-popup" id="myForm">
+				<form action="/action_page.php" class="form-container">
+					<h1>What is your suggestion?</h1>
+					<input type="suggtext" placeholder="Enter Suggestion" name="suggestion" required>
+					<button type="submit" class="enterbtn">Submit</button>
+					<button type="button" class="btn cancel" onclick="closeForm()">Never Mind</button>
+				</form>
+			</div> 
 		</header>
 
 		<br>
