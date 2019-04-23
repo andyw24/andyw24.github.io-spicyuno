@@ -6,13 +6,19 @@
 		<link rel="stylesheet" href="BoxStyle.css">
 	</head>
 	<body>
-		<div class=logOut><button type="button"
-			class="outbutton"
-					id = "logout"
-					onclick="logout()">
-					Log out</button>
-		</div>
-		<a href="Profile.html">Personal Profile</a>
+		<header>
+			<div class="topnav">
+				<headerText>Logged in as: <var id="currUser"></var></headerText>
+				<headerProfile type='button'onclick="window.location.href = 'Profile.html';">Profile</headerProfile>
+				<headerLogout type='button'onclick="logout()">Logout</headerLogout>
+			</div>
+		</header>
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 
 		<table align= "center">
 			<tr>
@@ -29,9 +35,9 @@
 					Want to suggest something?</button></th>
 			</tr>
 
-	<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
       <script type="text/javascript" src="main.js"></script>
-    
+
 
 	</body>
 </html>

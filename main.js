@@ -6,6 +6,7 @@
         document.getElementById("demo").innerHTML = "Attempting to Join";
       }
 
+
       // Initialize Firebase
       var config = {
         apiKey: "AIzaSyBJSpeiLpsALteamK8s4i86EPbVARLGLi0",
@@ -24,6 +25,15 @@
       //var testBig = document.getElementById('testBig');
       //myDatabase.child('users').on('value', snap => testBig.innerText = snap.val());
 
+      function getReload() {
+        currUser = localStorage.getItem("currUsername");
+      }
+/*
+      function switchPage(page) {
+        localStorage.setItem("currUsername", currUser);
+        window.location.href=page;
+      }
+*/
       function registerUser(uName, pass) {
       	var usersRef = myDatabase.child("users");
       	var newUser = usersRef.child(uName);
