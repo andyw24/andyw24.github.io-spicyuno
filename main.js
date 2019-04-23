@@ -50,7 +50,95 @@ function createBoxTable(tableData) {
   console.log(tableData.length);
   
 }
+function createSuggestionTable(tableData) {
+  //var tableData=viewAllBoxes();
+  var table = document.getElementById("SuggTable");
+  //var table = document.createElement('table');
+  var tableBody = document.createElement('tbody');
+  var tableLoc = document.getElementById("suggList");
 
+  //var row = document.createElement('tr');
+  //var cell = document.createElement('th');
+  //cell.appendChild("hello");
+  //row.appendChild(cell);
+  tableData.forEach(function(rowData) {
+    var row = document.createElement('tr');
+
+    rowData.forEach(function(cellData) {
+      var cell = document.createElement('th');
+      cell.appendChild(document.createTextNode(cellData));
+      row.appendChild(cell);
+    });
+    var btn = document.createElement("BUTTON");
+      btn.innerHTML = "Delete";
+      btn.class = "delbutton";
+      btn.id="delSugg";
+      /*var clickEvent = "addSuggestion(\"";
+      clickEvent += rowData[2];
+      clickEvent += "\",\"";
+      clickEvent += rowData[0];
+      clickEvent += "\",";
+      clickEvent += "document.getElementById(\"sugg\").value)";
+      console.log(clickEvent);
+      btn.onclick= function() { addSuggestion(rowData[2],rowData[0],document.getElementById("sugg").value);};*/
+      var btnhold = document.createElement('td');
+      btnhold.appendChild(btn);
+      row.appendChild(btnhold);
+
+
+    tableBody.appendChild(row);
+  });
+
+  table.appendChild(tableBody);
+  //tableLoc.appendChild(table);
+  //document.body.appendChild(table);
+  console.log(tableData.length);
+  
+}
+
+function createProfileTable(tableData) {
+  //var tableData=viewAllBoxes();
+  var table = document.getElementById("profileTable");
+  //var table = document.createElement('table');
+  var tableBody = document.createElement('tbody');
+  var tableLoc = document.getElementById("profileLoc");
+
+  //var row = document.createElement('tr');
+  //var cell = document.createElement('th');
+  //cell.appendChild("hello");
+  //row.appendChild(cell);
+  tableData.forEach(function(rowData) {
+    var row = document.createElement('tr');
+
+    rowData.forEach(function(cellData) {
+      var cell = document.createElement('th');
+      cell.appendChild(document.createTextNode(cellData));
+      row.appendChild(cell);
+    });
+    var btn = document.createElement("BUTTON");
+      btn.innerHTML = "Want to make a suggestion?";
+      btn.class = "delbutton";
+      btn.id="delBox";
+      var clickEvent = "deleteBox(\"";
+      clickEvent += rowData[0];
+      clickEvent += "\"";
+      clickEvent += ")";
+      console.log(clickEvent);
+      btn.onclick= function() { deleteBox(rowData[0]);};
+      var btnhold = document.createElement('td');
+      btnhold.appendChild(btn);
+      row.appendChild(btnhold);
+
+
+    tableBody.appendChild(row);
+  });
+
+  table.appendChild(tableBody);
+  //tableLoc.appendChild(table);
+  //document.body.appendChild(table);
+  console.log(tableData.length);
+  
+}
 
       // Initialize Firebase
       var config = {
@@ -256,6 +344,7 @@ function makeSuggestionTableHTML() {
             var suggestion = childSnapshot.child("suggestion").val();
             returnArray.push(suggestion);
           });
+          createSuggestionTable(returnArray);
          })
          console.log(returnArray);
       }
@@ -302,6 +391,7 @@ function makeSuggestionTableHTML() {
                 returnArray.push([boxTitle, boxDes]);
               }
             });
+            createProfileTable(returnArray);
          })
          console.log(returnArray);
          return returnArray;
