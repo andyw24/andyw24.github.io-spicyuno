@@ -185,6 +185,13 @@ function createProfileTable(tableData) {
         window.location.href=page;
       }
 */
+      function checkLogged() {
+	if (localStorage.getItem("currUsername") !== null) {
+	  location.href="ListOfBoxes.html";
+	}
+      }
+
+
       function registerUser(uName, pass) {
       	var usersRef = myDatabase.child("users");
       	var newUser = usersRef.child(uName);
@@ -235,6 +242,7 @@ function createProfileTable(tableData) {
 
       function logout() {
         //currUser.innerHTML = null;
+	      localStorage.removeItem("currUsername");
 	      window.location.href="index.html";
       }
 
@@ -358,6 +366,9 @@ function makeSuggestionTableHTML() {
       return array of suggestions in the form of strings
       */
       function viewSuggestions() {
+	if (localStorage.getItem("currUsername") === null) {
+	  location.href="index.html";
+	}
 	var t = decodeURIComponent(location.search.substring(1));
 	console.log(t);
         var returnArray = [];
@@ -379,6 +390,9 @@ function makeSuggestionTableHTML() {
       returnArray[2] = Owner
       */
       function viewAllBoxes() {
+	if (localStorage.getItem("currUsername") === null) {
+	  location.href="index.html";
+	}
         var returnArray = [];
         var allBoxesRef = myDatabase.child("suggestion boxes");
         var index = 0;
@@ -403,6 +417,9 @@ function makeSuggestionTableHTML() {
       returnarray[1] = Description
       */
       function viewMyBoxes() {
+	if (localStorage.getItem("currUsername") === null) {
+	  location.href="index.html";
+	}
         var returnArray = [];
         var allBoxesRef = myDatabase.child("suggestion boxes");
         allBoxesRef.once("value").then(function(snapshot) {
