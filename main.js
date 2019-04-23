@@ -82,6 +82,29 @@
         });
       }
 
+function makeBoxTableHTML() {
+    var myArray = viewAllBoxes();
+    var result = "<table align='center'>";
+    result += "<tr> <th>Box Name</th> <th>Description</th> <th>Suggest?</th> </tr>"
+    for(var i=0; i<myArray.length; i++) {
+        result += "<tr>";
+        for(var j=0; j<myArray[i].length; j++){
+            result += "<th>"+myArray[i][j]+"</th>";
+        }
+        result += "<th><button type='button' id ='addSuggestion' onclick='document.getElementById(&quot;demo&quot;).innerHTML = BoxCreate()'>Want to suggest something?</button></th>"
+        result += "</tr>";
+    }
+    result += "</table>";
+
+    return result;
+}
+//function addBoxSuggestionButton() {
+  //var para = document.createElement("BUTTON");
+  //para.innerHTML = "Want to make a suggestion?";
+  //document.getElementById("addSuggestion").appendChild(para);
+//}
       function deleteBox(t) {
         
       }
+
+      document.getElementById("tableMaybe").innerHTML = makeBoxTableHTML(); 
