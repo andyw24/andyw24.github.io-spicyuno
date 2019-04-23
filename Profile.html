@@ -6,14 +6,22 @@
 		<link rel="stylesheet" href="BoxStyle.css">
 	</head>
 	<body>
-		<div class= "logOut"><button type="button"
-			class="outbutton"
-			id = "logout"
-			onclick="document.getElementById('demo').innerHTML = BoxCreate()">
-			Log out</button>
-		</div>
-		<h1>Profile of </h1><h1 id=curruser></h1>
-		<p id="myBoxes"></p>
+		<header>
+			<div class="topnav">
+				<headerText>Logged in as: <span class="currUser"></span></headerText>
+				<headerProfile type='button'onclick="window.location.href = 'Profile.html';">Profile</headerProfile>
+				<headerLogout type='button'onclick="logout()">Logout</headerLogout>
+			</div>
+		</header>
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+
+		<h1>Profile of <span class="currUser"></span></h1>
+
 		<table align= "center">
 			<tr>
 				<th>Your Boxes</th>
@@ -27,5 +35,8 @@
 					onclick="document.getElementById('demo').innerHTML = SuggestionCreate()">
 					Delete</button></th>
 			</tr>
+
+			<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+      <script type="text/javascript" src="main.js"></script>
 	</body>
 </html>

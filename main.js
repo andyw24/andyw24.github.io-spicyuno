@@ -36,6 +36,7 @@ function createBoxTable() {
   document.body.appendChild(table);
 }
 
+
       // Initialize Firebase
       var config = {
         apiKey: "AIzaSyBJSpeiLpsALteamK8s4i86EPbVARLGLi0",
@@ -48,19 +49,31 @@ function createBoxTable() {
       firebase.initializeApp(config);
 
       var myDatabase = firebase.database().ref();
-      var currUser = document.getElementById('currUser');
-      var consoleMsg = document.getElementById('consoleMsg');
+      var currUser = document.getElementsByClassName('currUser');
+      var loginErrorMsg = document.getElementById('error');
+      //currUser.innerHTML = localStorage.getItem("currUsername");
+      var i;
+      for (i = 0; i < currUser.length; i++) {
+        currUser[i].innerHTML = localStorage.getItem("currUsername");
+      }
       //var testBig = document.getElementById('testBig');
       //myDatabase.child('users').on('value', snap => testBig.innerText = snap.val());
-
+/*
+      function getReload() {
+        currUser = localStorage.getItem("currUsername");
+      }
+      function switchPage(page) {
+        localStorage.setItem("currUsername", currUser);
+        window.location.href=page;
+      }
+*/
       function registerUser(uName, pass) {
       	var usersRef = myDatabase.child("users");
       	var newUser = usersRef.child(uName);
         usersRef.orderByChild("username").equalTo(uName).on("value", function(snapshot) {
           if (snapshot.exists()) {
             console.log("Someone with that username already exists!"); //show taken user message
-	          var errorMessage = document.getElementById('error');
-	          errorMessage.innerHTML = "Someone with that username already exists";
+      	    loginErrorMsg.innerHTML = "Someone with that username already exists!";
           } else {
             newUser.set({
           		password: pass,
@@ -69,7 +82,7 @@ function createBoxTable() {
             console.log("New user registered"); //take to home page
             //currUser.innerHTML = uName;
             localStorage.setItem("currUsername", uName);
-            currUser.innerHTML = localStorage.getItem("currUsername");
+            currUser = localStorage.getItem("currUsername");
 	          window.location.href="ListOfBoxes.html";
           }
         });
@@ -88,27 +101,23 @@ function createBoxTable() {
             });
             if (passWord.password === pass) {
               console.log("Successful Login"); //take to home page
-	      localStorage.setItem("currUsername", uName);
-              currUser.innerHTML = localStorage.getItem("currUsername");
-	      window.location.href="ListOfBoxes.html";
+	            localStorage.setItem("currUsername", uName);
+	            window.location.href="ListOfBoxes.html";
             } else {
               console.log("Invalid username or password"); //show invalid user/pass message
-	      var errorMessage = document.getElementById('error');
-	      errorMessage.innerHTML = "Invalid username or passoword";
+	            loginErrorMsg.innerHTML = "Invalid username or password";
             }
           } else {
             console.log("Invalid username or password"); //show invalid user/pass message
-	    
-	    var errorMessage = document.getElementById('error');
-	    errorMessage.innerHTML = "Invalid username or passoword";
-
+            loginErrorMsg.innerHTML = "Invalid username or password";
           }
         });
       }
 
+
       function logout() {
         //currUser.innerHTML = null;
-	window.location.href="index.html";
+	      window.location.href="index.html";
       }
 
       function createBox(t, d) {
@@ -279,8 +288,9 @@ function makeSuggestionTableHTML() {
          console.log(returnArray);
          return returnArray;
       }
-
+/*
       document.getElementById("curruser").innerHTML=currUser.innerText();
-      document.getElementById("tableMaybe").innerHTML = makeProfileTableHTML(); 
+      document.getElementById("tableMaybe").innerHTML = makeProfileTableHTML();
       document.getElementById("myBoxes").innerHTML = makeBoxTableHTML();
       document.getElementById("suggList").innerHTML = makeSuggestionTableHTML();
+*/

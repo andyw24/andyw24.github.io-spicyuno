@@ -3,15 +3,23 @@
 	<head>
 		<script type="text/javascript" src="main.js"></script>
 		<title>Suggestions</title>
-		<link rel="stylesheet" href="SuggestionStyle.css">
+		<link rel="stylesheet" href="BoxStyle.css">
 	</head>
 	<body>
-		<div class="logOut"><button type="button"
-					class="outbutton"
-					id = "logout"
-					onclick="document.getElementById('demo').innerHTML = BoxCreate()">
-					Log out</button>
-		</div>
+		<header>
+			<div class="topnav">
+				<headerText>Logged in as: <span class="currUser"></span></headerText>
+				<headerProfile type='button'onclick="window.location.href = 'Profile.html';">Profile</headerProfile>
+				<headerLogout type='button'onclick="logout()">Logout</headerLogout>
+			</div>
+		</header>
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+
 		<h1>Title of Box</h1>
 		<p id="suggList"></p>
 		<table align= "center">

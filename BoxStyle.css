@@ -1,5 +1,12 @@
 body{
   background-color: #ffeedf;
+  text-align: center;
+  margin-left: 0;
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  height: 100%;
+  width: 100%;
 }
 .logOut{
   text-align: right;
@@ -55,4 +62,35 @@ a:link, a:visited {
 }
 a:hover, a:active {
   	background-color: #0040dd;
+}
+
+
+header {
+  background-color: #166088;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  align-items: right;
+}
+.topnav {
+  overflow: hidden;
+  float: right;
+}
+.topnav headerProfile, headerLogout, headerText {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 20px 30px;
+  text-decoration: none;
+  background-color: #166088;
+}
+.topnav headerProfile:hover {
+  background-color: #C0D6DF;
+  color: black;
+}
+.topnav headerLogout:hover {
+  background-color: #D62C3F;
+  color: black;
 }
