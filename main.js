@@ -124,6 +124,10 @@ function createProfileTable(tableData) {
       cell.appendChild(document.createTextNode(cellData));
       row.appendChild(cell);
     });*/
+    var cell = document.createElement('th');
+      cell.appendChild(document.createTextNode(rowData[1]));
+      row.appendChild(cell);
+
     var btn = document.createElement("BUTTON");
       btn.innerHTML = "Delete Box";
       btn.class = "delbutton";
