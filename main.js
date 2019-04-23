@@ -5,6 +5,36 @@
       function JoinFunction() {
         document.getElementById("demo").innerHTML = "Attempting to Join";
       }
+function createBoxTable() {
+  var tableData=viewAllBoxes();
+  var table = document.createElement('table');
+  var tableBody = document.createElement('tbody');
+
+  var row = document.createElement('tr');
+  var cell = document.createElement('th');
+  cell.appendChild("hello");
+  row.appendChild(cell);
+  tableData.forEach(function(rowData) {
+    var row = document.createElement('tr');
+
+    rowData.forEach(function(cellData) {
+      var cell = document.createElement('td');
+      cell.appendChild(document.createTextNode(cellData));
+      row.appendChild(cell);
+      var btn = document.createElement("BUTTON");
+      btn.innerHTML = "Want to make a suggestion?";
+      btn.class = "delbutton";
+      var btnhold = document.createElement('td');
+      btnhold.appendChild(btn);
+      row.appendChild(btnhold);
+    });
+
+    tableBody.appendChild(row);
+  });
+
+  table.appendChild(tableBody);
+  document.body.appendChild(table);
+}
 
       // Initialize Firebase
       var config = {
@@ -153,11 +183,7 @@ function makeSuggestionTableHTML() {
   //para.innerHTML = "Want to make a suggestion?";
   //document.getElementById("addSuggestion").appendChild(para);
 //}
-//function addBoxSuggestionButton() {
-  //var para = document.createElement("BUTTON");
-  //para.innerHTML = "Want to make a suggestion?";
-  //document.getElementById("addSuggestion").appendChild(para);
-//}
+
       function deleteBox(t) {
         var allBoxesRef = myDatabase.child("suggestion boxes");
         var newBox = allBoxesRef.child(currUser.innerText+":"+t);
