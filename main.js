@@ -49,16 +49,19 @@ function createBoxTable() {
       firebase.initializeApp(config);
 
       var myDatabase = firebase.database().ref();
-      var currUser = document.getElementById('currUser');
+      var currUser = document.getElementsByClassName('currUser');
       var loginErrorMsg = document.getElementById('error');
-      currUser.innerHTML = localStorage.getItem("currUsername");
+      //currUser.innerHTML = localStorage.getItem("currUsername");
+      var i;
+      for (i = 0; i < currUser.length; i++) {
+        currUser[i].innerHTML = localStorage.getItem("currUsername");
+      }
       //var testBig = document.getElementById('testBig');
       //myDatabase.child('users').on('value', snap => testBig.innerText = snap.val());
-
+/*
       function getReload() {
         currUser = localStorage.getItem("currUsername");
       }
-/*
       function switchPage(page) {
         localStorage.setItem("currUsername", currUser);
         window.location.href=page;
@@ -285,8 +288,9 @@ function makeSuggestionTableHTML() {
          console.log(returnArray);
          return returnArray;
       }
-
+/*
       document.getElementById("curruser").innerHTML=currUser.innerText();
       document.getElementById("tableMaybe").innerHTML = makeProfileTableHTML();
       document.getElementById("myBoxes").innerHTML = makeBoxTableHTML();
       document.getElementById("suggList").innerHTML = makeSuggestionTableHTML();
+*/
