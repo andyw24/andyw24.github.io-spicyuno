@@ -13,6 +13,7 @@
       <button type="button"onclick="logout()">Logout</button>
       <br>
       <h3>Logged in as: <var id="currUser"></var></h3>
+      <h3>Console: <var id="consoleMsg"></var></h3>
       <br>
       Title: <input type="text" name="Suggestion Box Title" id="t"><br>
       Description: <input type="text" name="Suggestion Box Description" id="d"><br>
@@ -26,6 +27,14 @@
       Box Owner: <input type="text" name="BoxOwner" id="sugOwner"><br>
       Make Suggestion: <input type="text" name="Suggestion" id="sug"><br>
       <button type="button"onclick="addSuggestion(document.getElementById('sugOwner').value, document.getElementById('sugTitle').value, document.getElementById('sug').value)">Make Suggestion</button>
+      <br>
+      <br>
+      Box Title: <input type="text" name="BoxTitle" id="vSuggTitle"><br>
+      <button type="button"onclick="viewSuggestions(document.getElementById('vSuggTitle').value)">Show Suggestions</button>
+      <br>
+      <button type="button"onclick="viewAllBoxes()">Show All Boxes</button>
+      <br>
+      <button type="button"onclick="viewMyBoxes()">Show My Boxes</button>
 
       <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
       <script type="text/javascript" src="main.js"></script>
