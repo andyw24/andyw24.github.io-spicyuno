@@ -56,7 +56,8 @@ function createSuggestionTable(tableName,tableData) {
   //var table = document.createElement('table');
   var tableBody = document.createElement('tbody');
   var tableLoc = document.getElementById("suggList");
-
+  var title = document.getElementById("boxTitle");
+  title.innerText=tableName;
   //var row = document.createElement('tr');
   //var cell = document.createElement('th');
   //cell.appendChild("hello");
@@ -64,11 +65,11 @@ function createSuggestionTable(tableName,tableData) {
   tableData.forEach(function(rowData) {
     var row = document.createElement('tr');
 
-    rowData.forEach(function(cellData) {
+    //rowData.forEach(function(cellData) {
       var cell = document.createElement('th');
-      cell.appendChild(document.createTextNode(cellData));
+      cell.appendChild(document.createTextNode(rowData));
       row.appendChild(cell);
-    });
+    //});
     var btn = document.createElement("BUTTON");
       btn.innerHTML = "Delete";
       btn.class = "delbutton";
@@ -76,10 +77,10 @@ function createSuggestionTable(tableName,tableData) {
       var clickEvent = "deleteSuggestion(\"";
       clickEvent += tableName
       clickEvent += "\",\"";
-      clickEvent += rowData[0];
+      clickEvent += rowData;
       clickEvent += "\")";
       console.log(clickEvent);
-      btn.onclick= function() { deleteSuggestion(tableName,rowData[0]);};
+      btn.onclick= function() { deleteSuggestion(tableName,rowData);};
       var btnhold = document.createElement('td');
       btnhold.appendChild(btn);
       row.appendChild(btnhold);
@@ -110,7 +111,8 @@ function createProfileTable(tableData) {
     
     var ln = document.createElement('a');
       ln.innerText = rowData[0];
-      ln.href="ListOfSuggestions.html";
+      ln.href="ListOfSuggestions.html?";
+      ln.href+=rowData[0];
       var lnhold = document.createElement('th');
       lnhold.appendChild(ln);
       row.appendChild(lnhold);
@@ -355,9 +357,11 @@ function makeSuggestionTableHTML() {
       assumes that the user is logged in and is looking at a valid title, otherwise returnArray is empty
       return array of suggestions in the form of strings
       */
-      function viewSuggestions(t) {
+      function viewSuggestions() {
+	var t = decodeURIComponent(location.search.substring(1));
+	console.log(t);
         var returnArray = [];
-        var boxSugRef = myDatabase.child("suggestion boxes/"+currUser.innerText+":"+t+"/suggestions");
+        var boxSugRef = myDatabase.child("suggestion boxes/"+localStorage.getItem("currUsername")+":"+t+"/suggestions");
         boxSugRef.once("value").then(function(snapshot) {
           snapshot.forEach(function(childSnapshot) {
             var suggestion = childSnapshot.child("suggestion").val();
