@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+		<script type="text/javascript" src="main.js"></script>
+		<title>Suggestion Boxes</title>
+		<link rel="stylesheet" href="BoxStyle.css">
+	</head>
+	<body>
+		<div class=logOut><button type="button"
+			class="outbutton"
+					id = "logout"
+					onclick="logout()">
+					Log out</button>
+		</div>
+		<a href="Profile.html">Personal Profile</a>
+
+		<table align= "center">
+			<tr>
+				<th>Box Name</th>
+				<th>Description</th>
+				<th>Suggest?</th>
+			</tr>
+			<tr>
+				<th>Book Fair</th>
+				<th>Need books for our book fair, please send ideas</th>
+				<th><button type="button"
+					id ="addSuggestion"
+					onclick="document.getElementById('demo').innerHTML = BoxCreate()">
+					Want to suggest something?</button></th>
+			</tr>
+
+	<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+      <script type="text/javascript" src="main.js"></script>
+    
+
+	</body>
+</html>

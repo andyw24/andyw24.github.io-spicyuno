@@ -1,0 +1,58 @@
+body{
+  background-color: #ffeedf;
+}
+.logOut{
+  text-align: right;
+}
+
+.outbutton{
+  background-color: #3333EE;
+  border: none;
+  color: white;
+  padding: 13px 19px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 2px 2px;
+  cursor: pointer;
+}
+.delbutton {
+  background-color: #EE4444;
+  border: none;
+  color: black;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 75%;
+}
+
+td, th {
+    border: 3px solid #a0dddd;
+    text-align: left;
+     padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #11aadf;
+}
+
+a:link, a:visited {
+  	background-color: #129060;
+  	color: white;
+  	padding: 15px 25px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+}
+a:hover, a:active {
+  	background-color: #0040dd;
+}
