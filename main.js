@@ -28,7 +28,14 @@ function createBoxTable(tableData) {
       btn.innerHTML = "Want to make a suggestion?";
       btn.class = "delbutton";
       btn.id="addSuggestion";
-      btn.onclick="document.getElementById(demo').innerHTML = BoxCreate()"
+      var clickEvent = "addSuggestion(\"";
+      clickEvent += rowData[2];
+      clickEvent += "\",\"";
+      clickEvent += rowData[0];
+      clickEvent += "\",";
+      clickEvent += "document.getElementById(\"sugg\").value)";
+      console.log(clickEvent);
+      btn.onclick= function() { addSuggestion(rowData[2],rowData[0],document.getElementById("sugg").value);};
       var btnhold = document.createElement('td');
       btnhold.appendChild(btn);
       row.appendChild(btnhold);
