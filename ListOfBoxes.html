@@ -5,18 +5,31 @@
 		<link rel="stylesheet" href="BoxStyle.css">
 	</head>
 	<body onload ="viewAllBoxes()">
-		<div class=logOut><button type="button"
-			class="outbutton"
-					id = "logout"
-					onclick="logout()">
-					Log out</button>
-		</div>
-		<a href="Profile.html">Personal Profile</a>
-		<div id="tableMaybe"></div>
+		<header>
+			<div class="topnav">
+				<headerText>Logged in as: <span class="currUser"></span></headerText>
+				<headerProfile type='button'onclick="window.location.href = 'Profile.html';">Profile</headerProfile>
+				<headerLogout type='button'onclick="logout()">Logout</headerLogout>
+			</div>
+		</header>
 
-          <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
-          <script type="text/javascript" src="main.js"></script>
-    
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+<div id="tableMaybe"></div>
+
+		<table align= "center" id="niceTable">
+			<tr>
+				<th>Box Name</th>
+				<th>Description</th>
+				<th>Owner</th>
+				<th>Suggest?</th>
+			</tr>
+
+			<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+      <script type="text/javascript" src="main.js"></script>
 
 	</body>
 </html>

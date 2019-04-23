@@ -7,25 +7,28 @@
       }
 function createBoxTable(tableData) {
   //var tableData=viewAllBoxes();
-  var table = document.createElement('table');
+  var table = document.getElementById("niceTable");
+  //var table = document.createElement('table');
   var tableBody = document.createElement('tbody');
   var tableLoc = document.getElementById("tableMaybe");
 
-  var row = document.createElement('tr');
-  var cell = document.createElement('th');
+  //var row = document.createElement('tr');
+  //var cell = document.createElement('th');
   //cell.appendChild("hello");
-  row.appendChild(cell);
+  //row.appendChild(cell);
   tableData.forEach(function(rowData) {
     var row = document.createElement('tr');
 
     rowData.forEach(function(cellData) {
-      var cell = document.createElement('td');
+      var cell = document.createElement('th');
       cell.appendChild(document.createTextNode(cellData));
       row.appendChild(cell);
     });
     var btn = document.createElement("BUTTON");
       btn.innerHTML = "Want to make a suggestion?";
       btn.class = "delbutton";
+      btn.id="addSuggestion";
+      btn.onclick="document.getElementById(demo').innerHTML = BoxCreate()"
       var btnhold = document.createElement('td');
       btnhold.appendChild(btn);
       row.appendChild(btnhold);
@@ -35,11 +38,12 @@ function createBoxTable(tableData) {
   });
 
   table.appendChild(tableBody);
-  tableLoc.appendChild(table);
-  document.body.appendChild(table);
+  //tableLoc.appendChild(table);
+  //document.body.appendChild(table);
   console.log(tableData.length);
   
 }
+
 
       // Initialize Firebase
       var config = {
@@ -53,19 +57,31 @@ function createBoxTable(tableData) {
       firebase.initializeApp(config);
 
       var myDatabase = firebase.database().ref();
-      var currUser = document.getElementById('currUser');
-      var consoleMsg = document.getElementById('consoleMsg');
+      var currUser = document.getElementsByClassName('currUser');
+      var loginErrorMsg = document.getElementById('error');
+      //currUser.innerHTML = localStorage.getItem("currUsername");
+      var i;
+      for (i = 0; i < currUser.length; i++) {
+        currUser[i].innerHTML = localStorage.getItem("currUsername");
+      }
       //var testBig = document.getElementById('testBig');
       //myDatabase.child('users').on('value', snap => testBig.innerText = snap.val());
-
+/*
+      function getReload() {
+        currUser = localStorage.getItem("currUsername");
+      }
+      function switchPage(page) {
+        localStorage.setItem("currUsername", currUser);
+        window.location.href=page;
+      }
+*/
       function registerUser(uName, pass) {
       	var usersRef = myDatabase.child("users");
       	var newUser = usersRef.child(uName);
         usersRef.orderByChild("username").equalTo(uName).on("value", function(snapshot) {
           if (snapshot.exists()) {
             console.log("Someone with that username already exists!"); //show taken user message
-	          var errorMessage = document.getElementById('error');
-	          errorMessage.innerHTML = "Someone with that username already exists";
+      	    loginErrorMsg.innerHTML = "Someone with that username already exists!";
           } else {
             newUser.set({
           		password: pass,
@@ -74,7 +90,7 @@ function createBoxTable(tableData) {
             console.log("New user registered"); //take to home page
             //currUser.innerHTML = uName;
             localStorage.setItem("currUsername", uName);
-            currUser.innerHTML = localStorage.getItem("currUsername");
+            currUser = localStorage.getItem("currUsername");
 	          window.location.href="ListOfBoxes.html";
           }
         });
@@ -93,27 +109,23 @@ function createBoxTable(tableData) {
             });
             if (passWord.password === pass) {
               console.log("Successful Login"); //take to home page
-	      localStorage.setItem("currUsername", uName);
-              currUser.innerHTML = localStorage.getItem("currUsername");
-	      window.location.href="ListOfBoxes.html";
+	            localStorage.setItem("currUsername", uName);
+	            window.location.href="ListOfBoxes.html";
             } else {
               console.log("Invalid username or password"); //show invalid user/pass message
-	      var errorMessage = document.getElementById('error');
-	      errorMessage.innerHTML = "Invalid username or passoword";
+	            loginErrorMsg.innerHTML = "Invalid username or password";
             }
           } else {
             console.log("Invalid username or password"); //show invalid user/pass message
-	    
-	    var errorMessage = document.getElementById('error');
-	    errorMessage.innerHTML = "Invalid username or passoword";
-
+            loginErrorMsg.innerHTML = "Invalid username or password";
           }
         });
       }
 
+
       function logout() {
         //currUser.innerHTML = null;
-	window.location.href="index.html";
+	      window.location.href="index.html";
       }
 
       function createBox(t, d) {
@@ -289,6 +301,7 @@ function makeSuggestionTableHTML() {
       }
 /*
       document.getElementById("curruser").innerHTML=currUser.innerText();
-      document.getElementById("tableMaybe").innerHTML = makeProfileTableHTML(); 
+      document.getElementById("tableMaybe").innerHTML = makeProfileTableHTML();
       document.getElementById("myBoxes").innerHTML = makeBoxTableHTML();
-      document.getElementById("suggList").innerHTML = makeSuggestionTableHTML();*/
+      document.getElementById("suggList").innerHTML = makeSuggestionTableHTML();
+*/
