@@ -50,13 +50,12 @@ function createBoxTable(tableData) {
   console.log(tableData.length);
   
 }
-
-function createMyBoxTable(tableData) {
+function createSuggestionTable(tableName,tableData) {
   //var tableData=viewAllBoxes();
-  var table = document.getElementById("niceTable");
+  var table = document.getElementById("SuggTable");
   //var table = document.createElement('table');
   var tableBody = document.createElement('tbody');
-  //var tableLoc = document.getElementById("tableMaybe");
+  var tableLoc = document.getElementById("suggList");
 
   //var row = document.createElement('tr');
   //var cell = document.createElement('th');
@@ -65,17 +64,22 @@ function createMyBoxTable(tableData) {
   tableData.forEach(function(rowData) {
     var row = document.createElement('tr');
 
-    
-    var ln = document.createElement('a');
-      ln.innerText = rowData[0];
-      ln.href="ListOfSuggestions.html";
-      var lnhold = document.createElement('th');
-      lnhold.appendChild(ln);
-      row.appendChild(lnhold);
+    rowData.forEach(function(cellData) {
+      var cell = document.createElement('th');
+      cell.appendChild(document.createTextNode(cellData));
+      row.appendChild(cell);
+    });
     var btn = document.createElement("BUTTON");
-      btn.innerText = "Delete";
+      btn.innerHTML = "Delete";
       btn.class = "delbutton";
-      btn.onclick= function() { console.log("Delete dis");};
+      btn.id="delSugg";
+      var clickEvent = "deleteSuggestion(\"";
+      clickEvent += tableName
+      clickEvent += "\",\"";
+      clickEvent += rowData[0];
+      clickEvent += "\")";
+      console.log(clickEvent);
+      btn.onclick= function() { deleteSuggestion(tableName,rowData[0]);};
       var btnhold = document.createElement('td');
       btnhold.appendChild(btn);
       row.appendChild(btnhold);
@@ -91,6 +95,59 @@ function createMyBoxTable(tableData) {
   
 }
 
+function createProfileTable(tableData) {
+  //var tableData=viewAllBoxes();
+  var table = document.getElementById("profileTable");
+  //var table = document.createElement('table');
+  var tableBody = document.createElement('tbody');
+  var tableLoc = document.getElementById("profileLoc");
+  //var row = document.createElement('tr');
+  //var cell = document.createElement('th');
+  //cell.appendChild("hello");
+  //row.appendChild(cell);
+  tableData.forEach(function(rowData) {
+    var row = document.createElement('tr');
+    
+    var ln = document.createElement('a');
+      ln.innerText = rowData[0];
+      ln.href="ListOfSuggestions.html";
+      var lnhold = document.createElement('th');
+      lnhold.appendChild(ln);
+      row.appendChild(lnhold);
+/*    var btn = document.createElement("BUTTON");
+      btn.innerText = "Delete";
+      btn.class = "delbutton";
+      btn.onclick= function() { console.log("Delete dis");};
+=======*/
+/*    rowData.forEach(function(cellData) {
+      var cell = document.createElement('th');
+      cell.appendChild(document.createTextNode(cellData));
+      row.appendChild(cell);
+    });*/
+    var btn = document.createElement("BUTTON");
+      btn.innerHTML = "Delete Box";
+      btn.class = "delbutton";
+      btn.id="delBox";
+      var clickEvent = "deleteBox(\"";
+      clickEvent += rowData[0];
+      clickEvent += "\"";
+      clickEvent += ")";
+      console.log(clickEvent);
+      btn.onclick= function() { deleteBox(rowData[0]);};
+      var btnhold = document.createElement('td');
+      btnhold.appendChild(btn);
+      row.appendChild(btnhold);
+
+
+    tableBody.appendChild(row);
+  });
+
+  table.appendChild(tableBody);
+  //tableLoc.appendChild(table);
+  //document.body.appendChild(table);
+  console.log(tableData.length);
+  
+}
 
       // Initialize Firebase
       var config = {
@@ -177,7 +234,8 @@ function createMyBoxTable(tableData) {
 
       function createBox(t, d) {
         var allBoxesRef = myDatabase.child("suggestion boxes");
-        var newBox = allBoxesRef.child(currUser.innerText+":"+t);
+        var newBox = allBoxesRef.child(localStorage.getItem("currUsername") +":"+t);
+	//console.log(currUser.innerText + ":" + t);
         newBox.once("value").then(function(snapshot) {
           if (snapshot.exists()) {
             console.log("A box with this title already exists!") //show error message for user trying to create a box they already have
@@ -185,10 +243,11 @@ function createMyBoxTable(tableData) {
             newBox.set({
               title: t,
               description: d,
-              owner: currUser.innerText
+              owner: localStorage.getItem("currUsername") 
             });
-            var userRef = myDatabase.child("/users/" + currUser.innerText + "/my boxes");
+            var userRef = myDatabase.child("/users/" + localStorage.getItem("currUsername")  + "/my boxes");
             userRef.child(t).set({title: t});
+	    window.location.reload(false);
           }
         });
       }
@@ -250,12 +309,13 @@ function makeSuggestionTableHTML() {
 
       function deleteBox(t) {
         var allBoxesRef = myDatabase.child("suggestion boxes");
-        var newBox = allBoxesRef.child(currUser.innerText+":"+t);
+        var newBox = allBoxesRef.child(localStorage.getItem("currUsername") +":"+t);
         newBox.once("value").then(function(snapshot) {
           if (snapshot.exists()) {
             newBox.remove();
-            var userRef = myDatabase.child("/users/" + currUser.innerText + "/my boxes");
+            var userRef = myDatabase.child("/users/" + localStorage.getItem("currUsername") + "/my boxes");
             userRef.child(t).remove();
+  	    window.location.reload(false);
           } else {
             console.log("This box does not exist") //this error message should be impossible to reach via the website
           }
@@ -279,6 +339,9 @@ function makeSuggestionTableHTML() {
           }
         });
       }
+      function deleteSuggestion(t,s){
+        //placeholder function
+      }
 
 
 
@@ -296,6 +359,7 @@ function makeSuggestionTableHTML() {
             var suggestion = childSnapshot.child("suggestion").val();
             returnArray.push(suggestion);
           });
+          createSuggestionTable(t,returnArray);
          })
          console.log(returnArray);
       }
@@ -342,7 +406,7 @@ function makeSuggestionTableHTML() {
                 returnArray.push([boxTitle, boxDes]);
               }
             });
-	    createMyBoxTable(returnArray);
+            createProfileTable(returnArray);
          })
          console.log(returnArray);
          return returnArray;

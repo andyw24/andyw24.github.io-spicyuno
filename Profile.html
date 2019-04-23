@@ -21,7 +21,15 @@
 
 		<h1>Profile of <span class="currUser"></span></h1>
 
-		<table align= "center" id="niceTable">
+		<input type="text" placeholder="Box name" id="name">
+		<input type="text" placeholder="Box description" id="desc">
+		<button type="button"
+					class ="addbutton"
+					id="delBox"
+					onclick="createBox(document.getElementById('name').value,document.getElementById('desc').value)">
+					CreateBox</button>
+		<div id = "profileLoc"></div>
+		<table align= "center" id= "profileTable">
 			<tr>
 				<th>Your Boxes</th>
 				<th></th>
