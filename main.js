@@ -50,7 +50,7 @@ function createBoxTable(tableData) {
   console.log(tableData.length);
   
 }
-function createSuggestionTable(tableData) {
+function createSuggestionTable(tableName,tableData) {
   //var tableData=viewAllBoxes();
   var table = document.getElementById("SuggTable");
   //var table = document.createElement('table');
@@ -73,14 +73,13 @@ function createSuggestionTable(tableData) {
       btn.innerHTML = "Delete";
       btn.class = "delbutton";
       btn.id="delSugg";
-      /*var clickEvent = "addSuggestion(\"";
-      clickEvent += rowData[2];
+      var clickEvent = "deleteSuggestion(\"";
+      clickEvent += tableName
       clickEvent += "\",\"";
       clickEvent += rowData[0];
-      clickEvent += "\",";
-      clickEvent += "document.getElementById(\"sugg\").value)";
+      clickEvent += "\")";
       console.log(clickEvent);
-      btn.onclick= function() { addSuggestion(rowData[2],rowData[0],document.getElementById("sugg").value);};*/
+      btn.onclick= function() { deleteSuggestion(tableName,rowData[0]);};
       var btnhold = document.createElement('td');
       btnhold.appendChild(btn);
       row.appendChild(btnhold);
@@ -116,7 +115,7 @@ function createProfileTable(tableData) {
       row.appendChild(cell);
     });
     var btn = document.createElement("BUTTON");
-      btn.innerHTML = "Want to make a suggestion?";
+      btn.innerHTML = "Delete Box";
       btn.class = "delbutton";
       btn.id="delBox";
       var clickEvent = "deleteBox(\"";
@@ -327,6 +326,9 @@ function makeSuggestionTableHTML() {
           }
         });
       }
+      function deleteSuggestion(t,s){
+        //placeholder function
+      }
 
 
 
@@ -344,7 +346,7 @@ function makeSuggestionTableHTML() {
             var suggestion = childSnapshot.child("suggestion").val();
             returnArray.push(suggestion);
           });
-          createSuggestionTable(returnArray);
+          createSuggestionTable(t,returnArray);
          })
          console.log(returnArray);
       }
