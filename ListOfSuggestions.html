@@ -5,27 +5,30 @@
 		<link rel="stylesheet" href="BoxStyle.css">
 	</head>
 	<body onload = "viewSuggestions()">
-		<header>
+		<div class="header">
+			<headerImg type='button'onclick="window.location.href = 'ListOfBoxes.html';">
+				<img src="./images/logo.png" alt="Home Page" width="45" height="45">
+			</headerImg>
 			<div class="topnav">
 				<headerText>Logged in as: <span class="currUser"></span></headerText>
 				<headerProfile type='button'onclick="window.location.href = 'Profile.html';">Profile</headerProfile>
 				<headerLogout type='button'onclick="logout()">Logout</headerLogout>
 			</div>
-		</header>
+		</div>
 
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
+		<div class="pageTitle">
+			<h1>Suggestions inside <var id="boxTitle"></var></h1>
+		</div>
 
-		<h1 id="boxTitle">Title of Box</h1>
-		<div id="suggList"></div>
-		<table align= "center" id= "SuggTable">
-			<tr>
-				<th>Suggestions</th>
-				<th>Delete Button</th>
-			</tr>
+		<div class="pageContents">
+			<div id="suggList"></div>
+			<table align= "center" id= "SuggTable">
+				<tr>
+					<th>Suggestions</th>
+					<th>Delete Button</th>
+				</tr>
+			</table>
+		</div>
 		<!--	<tr>
 				<th>I think Animal Farm is a pretty good book</th>
 				<th><button type="button"
@@ -49,7 +52,7 @@
 					onclick="document.getElementById('demo').innerHTML = SuggestionCreate()">
 					Delete Suggestion</button></th>
 			</tr>-->
-			</table>
+
 
 			<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
       <script type="text/javascript" src="main.js"></script>

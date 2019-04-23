@@ -48,7 +48,7 @@ function createBoxTable(tableData) {
   //tableLoc.appendChild(table);
   //document.body.appendChild(table);
   console.log(tableData.length);
-  
+
 }
 function createSuggestionTable(tableName,tableData) {
   //var tableData=viewAllBoxes();
@@ -93,7 +93,7 @@ function createSuggestionTable(tableName,tableData) {
   //tableLoc.appendChild(table);
   //document.body.appendChild(table);
   console.log(tableData.length);
-  
+
 }
 
 function createProfileTable(tableData) {
@@ -108,7 +108,7 @@ function createProfileTable(tableData) {
   //row.appendChild(cell);
   tableData.forEach(function(rowData) {
     var row = document.createElement('tr');
-    
+
     var ln = document.createElement('a');
       ln.innerText = rowData[0];
       ln.href="ListOfSuggestions.html?";
@@ -152,7 +152,7 @@ function createProfileTable(tableData) {
   //tableLoc.appendChild(table);
   //document.body.appendChild(table);
   console.log(tableData.length);
-  
+
 }
 
       // Initialize Firebase
@@ -257,7 +257,7 @@ function createProfileTable(tableData) {
             newBox.set({
               title: t,
               description: d,
-              owner: localStorage.getItem("currUsername") 
+              owner: localStorage.getItem("currUsername")
             });
             var userRef = myDatabase.child("/users/" + localStorage.getItem("currUsername")  + "/my boxes");
             userRef.child(t).set({title: t});
@@ -353,12 +353,14 @@ function makeSuggestionTableHTML() {
           }
         });
       }
-      function deleteSuggestion(t,s){
-        //placeholder function
+
+      function deleteSuggestion(t, s){
+        var allBoxesRef = myDatabase.child("suggestion boxes");
+        var thisBoxSuggestions = allBoxesRef.child(currUser+":"+t+"/suggestions");
+        thisBoxSuggestions.once("value").then(function(snapshot) {
+
+        });
       }
-
-
-
 
       /*
       returns array of suggestions associated with currUser's box with title t
@@ -366,11 +368,11 @@ function makeSuggestionTableHTML() {
       return array of suggestions in the form of strings
       */
       function viewSuggestions() {
-	if (localStorage.getItem("currUsername") === null) {
-	  location.href="index.html";
-	}
-	var t = decodeURIComponent(location.search.substring(1));
-	console.log(t);
+      	if (localStorage.getItem("currUsername") === null) {
+      	  location.href="index.html";
+      	}
+      	var t = decodeURIComponent(location.search.substring(1));
+      	console.log(t);
         var returnArray = [];
         var boxSugRef = myDatabase.child("suggestion boxes/"+localStorage.getItem("currUsername")+":"+t+"/suggestions");
         boxSugRef.once("value").then(function(snapshot) {
@@ -390,9 +392,9 @@ function makeSuggestionTableHTML() {
       returnArray[2] = Owner
       */
       function viewAllBoxes() {
-	if (localStorage.getItem("currUsername") === null) {
-	  location.href="index.html";
-	}
+      	if (localStorage.getItem("currUsername") === null) {
+      	  location.href="index.html";
+      	}
         var returnArray = [];
         var allBoxesRef = myDatabase.child("suggestion boxes");
         var index = 0;
@@ -403,11 +405,10 @@ function makeSuggestionTableHTML() {
               var boxOwner = childSnapshot.child("owner").val();
               returnArray.push([boxTitle, boxDes, boxOwner]);
            });
-	   createBoxTable(returnArray);
-
+	         createBoxTable(returnArray);
          })
          console.log(returnArray);
-         //console.log(returnArray.length);	  
+         //console.log(returnArray.length);
          return returnArray;
       }
 
@@ -417,9 +418,9 @@ function makeSuggestionTableHTML() {
       returnarray[1] = Description
       */
       function viewMyBoxes() {
-	if (localStorage.getItem("currUsername") === null) {
-	  location.href="index.html";
-	}
+      	if (localStorage.getItem("currUsername") === null) {
+      	  location.href="index.html";
+      	}
         var returnArray = [];
         var allBoxesRef = myDatabase.child("suggestion boxes");
         allBoxesRef.once("value").then(function(snapshot) {

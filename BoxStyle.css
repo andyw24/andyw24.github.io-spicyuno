@@ -1,13 +1,14 @@
-body{
-  background-color: #ffeedf;
-  text-align: center;
-  margin-left: 0;
-  margin-top: 0;
-  margin-right: 0;
-  margin-bottom: 0;
-  height: 100%;
-  width: 100%;
+@font-face {
+    font-family: sans-serif;
+    src: url("./fonts/NotoSans-Regular.ttf");
 }
+body{
+  background-color: #eeeeee;
+  text-align: center;
+  margin: 0;
+  font-family: 'Noto Sans', sans-serif, Georgia;
+}
+
 .logOut{
   text-align: right;
 }
@@ -51,7 +52,6 @@ body{
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 75%;
 }
 
 td, th {
@@ -77,10 +77,12 @@ a:hover, a:active {
 }
 
 
-header {
+
+.header {
   background-color: #166088;
   width: 100%;
-  position: fixed;
+  height: 60px;
+  position: static;
   top: 0;
   left: 0;
   right: 0;
@@ -90,11 +92,15 @@ header {
   overflow: hidden;
   float: right;
 }
+.header headerImg{
+  float: left;
+  padding: 5px 5px;
+}
 .topnav headerProfile, headerLogout, headerText {
   float: left;
   color: #f2f2f2;
   text-align: center;
-  padding: 20px 30px;
+  padding: 20px 20px;
   text-decoration: none;
   background-color: #166088;
 }
@@ -105,4 +111,29 @@ header {
 .topnav headerLogout:hover {
   background-color: #D62C3F;
   color: black;
+}
+.pageTitle {
+  background-color: #C0D6DF;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 20px
+}
+.pageContents {
+  background-color: #C0D6DF;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.pageContents table{
+  background-color: #dddddd;
+  margin: 10px;
+}
+.pageContents td, th {
+    border: 3px solid #cccccc;
+    text-align: left;
+     padding: 8px;
+}
+.pageContents tr:nth-child(even) {
+    background-color: #B0C5CE;
 }
