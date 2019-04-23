@@ -82,8 +82,24 @@
         });
       }
 
-function makeBoxTableHTML() {
+function makeProfileTableHTML() {
     var myArray = viewAllBoxes();
+    var result = "<table align='center'>";
+    result += "<tr> <th>Your Boxes</th> <th></th> </tr>"
+    for(var i=0; i<myArray.length; i++) {
+        result += "<tr>";
+        for(var j=0; j<myArray[i].length; j++){
+            result += "<th>"+myArray[i][j]+"</th>";
+        }
+        result += "<th><button type='button' id ='delbox' class='delbutton' onclick='document.getElementById(&quot;demo&quot;).innerHTML = BoxCreate()'>Delete</button></th>"
+        result += "</tr>";
+    }
+    result += "</table>";
+
+    return result;
+}
+function makeBoxTableHTML() {
+    var myArray = viewMyBoxes();
     var result = "<table align='center'>";
     result += "<tr> <th>Box Name</th> <th>Description</th> <th>Suggest?</th> </tr>"
     for(var i=0; i<myArray.length; i++) {
@@ -91,7 +107,25 @@ function makeBoxTableHTML() {
         for(var j=0; j<myArray[i].length; j++){
             result += "<th>"+myArray[i][j]+"</th>";
         }
-        result += "<th><button type='button' id ='addSuggestion' onclick='document.getElementById(&quot;demo&quot;).innerHTML = BoxCreate()'>Want to suggest something?</button></th>"
+        result += "<th><button type='button' id ='addSuggestion' onclick='document.getElementById(&quot;demo&quot;).innerHTML"
+        result += " = addSuggestion(&quot;Walter&quot;,&quot;BookFair&quot;,&quot;Communist Manifesto&quot;)'>Want to suggest something?</button></th>"
+        result += "</tr>";
+    }
+    result += "</table>";
+
+    return result;
+}
+}
+function makeSuggestionTableHTML() {
+    var myArray = viewSuggestions("Book Fair");
+    var result = "<table align='center'>";
+    result += "<tr> <th>Suggestion</th> <th>Delete Button</th> </tr>"
+    for(var i=0; i<myArray.length; i++) {
+        result += "<tr>";
+        for(var j=0; j<myArray[i].length; j++){
+            result += "<th>"+myArray[i][j]+"</th>";
+        }
+        result += "<th><button type='button' id ='delSugg' class='delbutton' onclick='document.getElementById(&quot;demo&quot;).innerHTML = BoxCreate()'>Delete</button></th>"
         result += "</tr>";
     }
     result += "</table>";
@@ -103,8 +137,107 @@ function makeBoxTableHTML() {
   //para.innerHTML = "Want to make a suggestion?";
   //document.getElementById("addSuggestion").appendChild(para);
 //}
+//function addBoxSuggestionButton() {
+  //var para = document.createElement("BUTTON");
+  //para.innerHTML = "Want to make a suggestion?";
+  //document.getElementById("addSuggestion").appendChild(para);
+//}
       function deleteBox(t) {
-        
+        var allBoxesRef = myDatabase.child("suggestion boxes");
+        var newBox = allBoxesRef.child(currUser.innerText+":"+t);
+        newBox.once("value").then(function(snapshot) {
+          if (snapshot.exists()) {
+            newBox.remove();
+            var userRef = myDatabase.child("/users/" + currUser.innerText + "/my boxes");
+            userRef.child(t).remove();
+          } else {
+            console.log("This box does not exist") //this error message should be impossible to reach via the website
+          }
+        });
       }
 
-      document.getElementById("tableMaybe").innerHTML = makeBoxTableHTML(); 
+      /*
+      parameters:
+        o: owner of the suggestion box you are making a suggestion to
+        t: title of the suggestion box you are suggesting to
+        s: the contents of the suggestion
+      */
+      function addSuggestion(o, t, s) {
+        var allBoxesRef = myDatabase.child("suggestion boxes");
+        var thisBox = allBoxesRef.child(o+":"+t);
+        thisBox.once("value").then(function(snapshot) {
+          if (snapshot.exists()) {
+            thisBox.child("suggestions").push().set({suggestion: s});
+          } else {
+            console.log("This box does not exist") //this error message should be impossible to reach via the website
+          }
+        });
+      }
+
+
+
+
+      /*
+      returns array of suggestions associated with currUser's box with title t
+      assumes that the user is logged in and is looking at a valid title, otherwise returnArray is empty
+      return array of suggestions in the form of strings
+      */
+      function viewSuggestions(t) {
+        var returnArray = [];
+        var boxSugRef = myDatabase.child("suggestion boxes/"+currUser.innerText+":"+t+"/suggestions");
+        boxSugRef.once("value").then(function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+            var suggestion = childSnapshot.child("suggestion").val();
+            returnArray.push(suggestion);
+          });
+         })
+         console.log(returnArray);
+      }
+
+      /*shows all boxes for homepage
+      READING FROM THE DATABASE
+      returnarray[0] = Title
+      returnarray[1] = Description
+      returnArray[2] = Owner
+      */
+      function viewAllBoxes() {
+        var returnArray = [];
+        var allBoxesRef = myDatabase.child("suggestion boxes");
+        var index = 0;
+        allBoxesRef.once("value").then(function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+              var boxTitle = childSnapshot.child("title").val();
+              var boxDes = childSnapshot.child("description").val();
+              var boxOwner = childSnapshot.child("owner").val();
+              returnArray.push([boxTitle, boxDes, boxOwner]);
+            });
+         })
+         console.log(returnArray);
+         return returnArray;
+      }
+
+      /*
+      returns a 2D array of currUser's boxes
+      returnarray[0] = Title
+      returnarray[1] = Description
+      */
+      function viewMyBoxes() {
+        var returnArray = [];
+        var allBoxesRef = myDatabase.child("suggestion boxes");
+        allBoxesRef.once("value").then(function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+              var boxTitle = childSnapshot.child("title").val();
+              var boxDes = childSnapshot.child("description").val();
+              var boxOwner = childSnapshot.child("owner").val();
+              if (boxOwner === currUser.innerText) {
+                returnArray.push([boxTitle, boxDes]);
+              }
+            });
+         })
+         console.log(returnArray);
+         return returnArray;
+      }
+
+      document.getElementById("tableMaybe").innerHTML = makeProfileTableHTML(); 
+      document.getElementById("myBoxes").innerHTML = makeBoxTableHTML();
+      document.getElementById("suggList").innerHTML = makeSuggestionTableHTML();
