@@ -36,6 +36,18 @@ body{
   margin: 4px 2px;
   cursor: pointer;
 }
+.addbutton{
+  background-color: #8888EE;
+  border: none;
+  color: white;
+  padding: 13px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 2px 2px;
+  cursor: pointer;
+}
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
