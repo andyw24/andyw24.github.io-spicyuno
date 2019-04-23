@@ -1,11 +1,10 @@
 <!doctype html>
 <html>
 	<head>
-		<script type="text/javascript" src="main.js"></script>
 		<title>Suggestion Boxes</title>
 		<link rel="stylesheet" href="BoxStyle.css">
 	</head>
-	<body onload ="createBoxTable()">
+	<body onload ="viewAllBoxes()">
 		<div class=logOut><button type="button"
 			class="outbutton"
 					id = "logout"
@@ -14,5 +13,10 @@
 		</div>
 		<a href="Profile.html">Personal Profile</a>
 		<div id="tableMaybe"></div>
+
+          <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+          <script type="text/javascript" src="main.js"></script>
+    
+
 	</body>
 </html>

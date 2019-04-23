@@ -5,14 +5,15 @@
       function JoinFunction() {
         document.getElementById("demo").innerHTML = "Attempting to Join";
       }
-function createBoxTable() {
-  var tableData=viewAllBoxes();
+function createBoxTable(tableData) {
+  //var tableData=viewAllBoxes();
   var table = document.createElement('table');
   var tableBody = document.createElement('tbody');
+  var tableLoc = document.getElementById("tableMaybe");
 
   var row = document.createElement('tr');
   var cell = document.createElement('th');
-  cell.appendChild("hello");
+  //cell.appendChild("hello");
   row.appendChild(cell);
   tableData.forEach(function(rowData) {
     var row = document.createElement('tr');
@@ -21,19 +22,23 @@ function createBoxTable() {
       var cell = document.createElement('td');
       cell.appendChild(document.createTextNode(cellData));
       row.appendChild(cell);
-      var btn = document.createElement("BUTTON");
+    });
+    var btn = document.createElement("BUTTON");
       btn.innerHTML = "Want to make a suggestion?";
       btn.class = "delbutton";
       var btnhold = document.createElement('td');
       btnhold.appendChild(btn);
       row.appendChild(btnhold);
-    });
+
 
     tableBody.appendChild(row);
   });
 
   table.appendChild(tableBody);
+  tableLoc.appendChild(table);
   document.body.appendChild(table);
+  console.log(tableData.length);
+  
 }
 
       // Initialize Firebase
@@ -252,9 +257,12 @@ function makeSuggestionTableHTML() {
               var boxDes = childSnapshot.child("description").val();
               var boxOwner = childSnapshot.child("owner").val();
               returnArray.push([boxTitle, boxDes, boxOwner]);
-            });
+           });
+	   createBoxTable(returnArray);
+
          })
          console.log(returnArray);
+         //console.log(returnArray.length);	  
          return returnArray;
       }
 
@@ -279,8 +287,8 @@ function makeSuggestionTableHTML() {
          console.log(returnArray);
          return returnArray;
       }
-
+/*
       document.getElementById("curruser").innerHTML=currUser.innerText();
       document.getElementById("tableMaybe").innerHTML = makeProfileTableHTML(); 
       document.getElementById("myBoxes").innerHTML = makeBoxTableHTML();
-      document.getElementById("suggList").innerHTML = makeSuggestionTableHTML();
+      document.getElementById("suggList").innerHTML = makeSuggestionTableHTML();*/
