@@ -24,7 +24,13 @@ function createBoxTable(tableData) {
       cell.appendChild(document.createTextNode(cellData));
       row.appendChild(cell);
     });
-    var btn = document.createElement("BUTTON");
+    var openbtn = document.createElement("BUTTON");
+      openbtn.innerHTML="Want to make a suggestion?";
+      openbtn.class="open-button";
+      openbtn.id="openForm";
+      var clickEvent = "openForm()"
+
+    /*var btn = document.createElement("BUTTON");
       btn.innerHTML = "Want to make a suggestion?";
       btn.class = "delbutton";
       btn.id="addSuggestion";
@@ -35,9 +41,10 @@ function createBoxTable(tableData) {
       clickEvent += "\",";
       clickEvent += "document.getElementById(\"sugg\").value)";
       console.log(clickEvent);
-      btn.onclick= function() { addSuggestion(rowData[2],rowData[0],document.getElementById("sugg").value);};
+      btn.onclick= function() { addSuggestion(rowData[2],rowData[0],document.getElementById("sugg").value);};*/
+      
       var btnhold = document.createElement('td');
-      btnhold.appendChild(btn);
+      btnhold.appendChild(openbtn);
       row.appendChild(btnhold);
 
 
@@ -49,6 +56,12 @@ function createBoxTable(tableData) {
   //document.body.appendChild(table);
   console.log(tableData.length);
   
+}
+function openForm() {
+  document.getElementByID("myForm").style.display = "block";
+}
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
 }
 function createSuggestionTable(tableName,tableData) {
   //var tableData=viewAllBoxes();
