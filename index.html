@@ -2,17 +2,21 @@
 <html>
   <head>
        <title>Suggestion Box</title>
+       <link rel="stylesheet" href="BoxStyle.css">
+       <link rel="stylesheet" href="loginPage.css">
   </head>
   <body>
-    <form action = "/action_page.php">
-      Username: <input type="text" name="Username" id="u"><br>
-      Password: <input type="password" name="Password" id="p"><br>
-      <button type="button" onclick="login(document.getElementById('u').value, document.getElementById('p').value)">Login</button>
-      <button type="button" onclick="registerUser(document.getElementById('u').value, document.getElementById('p').value)">Register</button>
-      <!--<button type="button" onclick="logout()">Logout</button>-->
-      <p>Errors: <var id="error"></var></p>
-
-    </form>
+    <div class="form">
+      <form class="register-form">
+        <h1>Suggestion Box Login</h1>
+        <input type="text" placeholder="username" id="u"><br>
+        <input type="password" placeholder="password" id="p"><br>
+        <button type="button" onclick="login(document.getElementById('u').value, document.getElementById('p').value)">Login</button>
+        <button type="button" onclick="registerUser(document.getElementById('u').value, document.getElementById('p').value)">Register</button>
+        <!--<button type="button" onclick="logout()">Logout</button>-->
+        <p><var id="error"></var></p>
+      </form>
+    </div>
 
 
       <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
