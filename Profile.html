@@ -5,36 +5,38 @@
 		<link rel="stylesheet" href="BoxStyle.css">
 	</head>
 	<body onload="viewMyBoxes()">
-		<header>
+		<div class="header">
+			<headerImg type='button'onclick="window.location.href = 'ListOfBoxes.html';">
+				<img src="./images/logo.png" alt="Home Page" width="45" height="45">
+			</headerImg>
 			<div class="topnav">
 				<headerText>Logged in as: <span class="currUser"></span></headerText>
 				<headerProfile type='button'onclick="window.location.href = 'Profile.html';">Profile</headerProfile>
 				<headerLogout type='button'onclick="logout()">Logout</headerLogout>
 			</div>
-		</header>
+		</div>
 
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
+		<div class="pageTitle">
+			<h1><span class="currUser"></span>'s Suggestion Boxes</h1>
+		</div>
 
-		<h1>Profile of <span class="currUser"></span></h1>
-
-		<input type="text" placeholder="Box name" id="name">
-		<input type="text" placeholder="Box description" id="desc">
-		<button type="button"
-					class ="addbutton"
-					id="delBox"
-					onclick="createBox(document.getElementById('name').value,document.getElementById('desc').value)">
-					CreateBox</button>
-		<div id = "profileLoc"></div>
-		<table align= "center" id= "profileTable">
-			<tr>
-				<th>Your Boxes</th>
-				<th>Description</th>
-				<th>Delete</th>
-			</tr>
+		<div class="pageContents">
+			<input type="text" placeholder="Box name" id="name">
+			<input type="text" placeholder="Box description" id="desc">
+			<button type="button"
+						class ="addbutton"
+						id="delBox"
+						onclick="createBox(document.getElementById('name').value,document.getElementById('desc').value)">
+						CreateBox</button>
+			<div id = "profileLoc"></div>
+			<table align= "center" id= "profileTable">
+				<tr>
+					<th>Your Boxes</th>
+					<th>Description</th>
+					<th>Delete</th>
+				</tr>
+			</table>
+		</div>
 			<!--	<tr>
 				<th><a href = "ListOfSuggestions.html">Book Fair</a></th>
 				<th><button type="button"
@@ -43,7 +45,6 @@
 					onclick="document.getElementById('demo').innerHTML = SuggestionCreate()">
 					Delete</button></th>
 			</tr>-->
-		</table>
 			<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
       <script type="text/javascript" src="main.js"></script>
 	</body>
