@@ -100,7 +100,7 @@
       }
 
 function makeProfileTableHTML() {
-    var myArray = viewAllBoxes();
+    var myArray = viewMyBoxes();
     var result = "<table align='center'>";
     result += "<tr> <th>Your Boxes</th> <th></th> </tr>"
     for(var i=0; i<myArray.length; i++) {
@@ -116,7 +116,7 @@ function makeProfileTableHTML() {
     return result;
 }
 function makeBoxTableHTML() {
-    var myArray = viewMyBoxes();
+    var myArray = viewAllBoxes();
     var result = "<table align='center'>";
     result += "<tr> <th>Box Name</th> <th>Description</th> <th>Suggest?</th> </tr>"
     for(var i=0; i<myArray.length; i++) {
