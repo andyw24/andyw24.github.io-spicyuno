@@ -121,17 +121,16 @@ function makeBoxTableHTML() {
     result += "<tr> <th>Box Name</th> <th>Description</th> <th>Suggest?</th> </tr>"
     for(var i=0; i<myArray.length; i++) {
         result += "<tr>";
-        for(var j=0; j<myArray[i].length; j++){
+        for(var j=0; j<2; j++){
             result += "<th>"+myArray[i][j]+"</th>";
         }
         result += "<th><button type='button' id ='addSuggestion' onclick='document.getElementById(&quot;demo&quot;).innerHTML"
-        result += " = addSuggestion(&quot;Walter&quot;,&quot;BookFair&quot;,&quot;Communist Manifesto&quot;)'>Want to suggest something?</button></th>"
+        result += " = addSuggestion(myArray[i][2],myArray[i][0],&quot;Communist Manifesto&quot;)'>Want to suggest something?</button></th>"
         result += "</tr>";
     }
     result += "</table>";
 
     return result;
-}
 }
 function makeSuggestionTableHTML() {
     var myArray = viewSuggestions("Book Fair");
@@ -255,6 +254,7 @@ function makeSuggestionTableHTML() {
          return returnArray;
       }
 
+      document.getElementById("curruser").innerHTML=currUser.innerText();
       document.getElementById("tableMaybe").innerHTML = makeProfileTableHTML(); 
       document.getElementById("myBoxes").innerHTML = makeBoxTableHTML();
       document.getElementById("suggList").innerHTML = makeSuggestionTableHTML();
