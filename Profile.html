@@ -4,7 +4,7 @@
 		<title>Personal Profile</title>
 		<link rel="stylesheet" href="BoxStyle.css">
 	</head>
-	<body>
+	<body onload = "viewMyBoxes()">
 		<header>
 			<div class="topnav">
 				<headerText>Logged in as: <span class="currUser"></span></headerText>
@@ -20,8 +20,15 @@
 		<br>
 
 		<h1>Profile of <span class="currUser"></span></h1>
-
-		<table align= "center">
+		<input type="text" placeholder="Box name" id="name">
+		<input type="text" placeholder="Box description" id="desc">
+		<button type="button"
+					class ="addbutton"
+					id="delBox"
+					onclick="document.getElementById('demo').innerHTML = CreateBox(document.getElementById('name'),document.getElementById('desc'))">
+					CreateBox</button>
+		<div id = "profileLoc"></div>
+		<table align= "center" id= "profileTable">
 			<tr>
 				<th>Your Boxes</th>
 				<th></th>
