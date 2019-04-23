@@ -1,15 +1,19 @@
 <!doctype html>
 <html>
   <head>
-    <script type="text/javascript" src="main.js"></script>
-    <title>Suggestion Box</title>
+       <title>Suggestion Box</title>
   </head>
   <body>
     <form action = "/action_page.php">
-      Username: <input type="text" name="Username" value="ExampleUsername"><br>
-      Password: <input type="text" name="Password" value="ideallycomplicated"><br>
-      <input type="submit" value="Log in">
-      <input type="submit" value="Register">
+      Username: <input type="text" name="Username" id="u"><br>
+      Password: <input type="password" name="Password" id="p"><br>
+      <button type="button" onclick="login(document.getElementById('u').value, document.getElementById('p').value)">Login</button>
+      <button type="button" onclick="registerUser(document.getElementById('u').value, document.getElementById('p').value)">Register</button>
+      <!--<button type="button" onclick="logout()">Logout</button>-->
+      <br>
+      <h3>Loggen in as: <var id="currUser"></var></h3>
+      <h3>Errors: <var id="error"></var></h3>
+
     </form>
 
 
