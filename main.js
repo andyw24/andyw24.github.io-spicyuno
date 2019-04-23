@@ -19,6 +19,7 @@
 
       var myDatabase = firebase.database().ref();
       var currUser = document.getElementById('currUser');
+      var consoleMsg = document.getElementById('consoleMsg');
       //var testBig = document.getElementById('testBig');
       //myDatabase.child('users').on('value', snap => testBig.innerText = snap.val());
 
@@ -28,12 +29,14 @@
         usersRef.orderByChild("username").equalTo(uName).on("value", function(snapshot) {
           if (snapshot.exists()) {
             console.log("Someone with that username already exists!"); //show taken user message
+            consoleMsg.innerHTML = "Someone with that username already exists!";
           } else {
             newUser.set({
           		password: pass,
               username: uName
           	});
             console.log("New user registered"); //take to home page
+            consoleMsg.innerHTML = "New user registered";
             currUser.innerHTML = uName;
           }
         });
@@ -114,4 +117,68 @@
             console.log("This box does not exist") //this error message should be impossible to reach via the website
           }
         });
+      }
+
+
+
+
+      /*
+      returns array of suggestions associated with currUser's box with title t
+      assumes that the user is logged in and is looking at a valid title, otherwise returnArray is empty
+      return array of suggestions in the form of strings
+      */
+      function viewSuggestions(t) {
+        var returnArray = [];
+        var boxSugRef = myDatabase.child("suggestion boxes/"+currUser.innerText+":"+t+"/suggestions");
+        boxSugRef.once("value").then(function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+            var suggestion = childSnapshot.child("suggestion").val();
+            returnArray.push(suggestion);
+          });
+         })
+         console.log(returnArray);
+      }
+
+      /*shows all boxes for homepage
+      READING FROM THE DATABASE
+      returnarray[0] = Title
+      returnarray[1] = Description
+      returnArray[2] = Owner
+      */
+      function viewAllBoxes() {
+        var returnArray = [];
+        var allBoxesRef = myDatabase.child("suggestion boxes");
+        var index = 0;
+        allBoxesRef.once("value").then(function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+              var boxTitle = childSnapshot.child("title").val();
+              var boxDes = childSnapshot.child("description").val();
+              var boxOwner = childSnapshot.child("owner").val();
+              returnArray.push([boxTitle, boxDes, boxOwner]);
+            });
+         })
+         console.log(returnArray);
+         return returnArray;
+      }
+
+      /*
+      returns a 2D array of currUser's boxes
+      returnarray[0] = Title
+      returnarray[1] = Description
+      */
+      function viewMyBoxes() {
+        var returnArray = [];
+        var allBoxesRef = myDatabase.child("suggestion boxes");
+        allBoxesRef.once("value").then(function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+              var boxTitle = childSnapshot.child("title").val();
+              var boxDes = childSnapshot.child("description").val();
+              var boxOwner = childSnapshot.child("owner").val();
+              if (boxOwner === currUser.innerText) {
+                returnArray.push([boxTitle, boxDes]);
+              }
+            });
+         })
+         console.log(returnArray);
+         return returnArray;
       }
