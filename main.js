@@ -51,6 +51,46 @@ function createBoxTable(tableData) {
   
 }
 
+function createMyBoxTable(tableData) {
+  //var tableData=viewAllBoxes();
+  var table = document.getElementById("niceTable");
+  //var table = document.createElement('table');
+  var tableBody = document.createElement('tbody');
+  //var tableLoc = document.getElementById("tableMaybe");
+
+  //var row = document.createElement('tr');
+  //var cell = document.createElement('th');
+  //cell.appendChild("hello");
+  //row.appendChild(cell);
+  tableData.forEach(function(rowData) {
+    var row = document.createElement('tr');
+
+    
+    var ln = document.createElement('a');
+      ln.innerText = rowData[0];
+      ln.href="ListOfSuggestions.html";
+      var lnhold = document.createElement('th');
+      lnhold.appendChild(ln);
+      row.appendChild(lnhold);
+    var btn = document.createElement("BUTTON");
+      btn.innerText = "Delete";
+      btn.class = "delbutton";
+      btn.onclick= function() { console.log("Delete dis");};
+      var btnhold = document.createElement('td');
+      btnhold.appendChild(btn);
+      row.appendChild(btnhold);
+
+
+    tableBody.appendChild(row);
+  });
+
+  table.appendChild(tableBody);
+  //tableLoc.appendChild(table);
+  //document.body.appendChild(table);
+  console.log(tableData.length);
+  
+}
+
 
       // Initialize Firebase
       var config = {
@@ -298,10 +338,11 @@ function makeSuggestionTableHTML() {
               var boxTitle = childSnapshot.child("title").val();
               var boxDes = childSnapshot.child("description").val();
               var boxOwner = childSnapshot.child("owner").val();
-              if (boxOwner === currUser.innerText) {
+              if (boxOwner === localStorage.getItem("currUsername")) {
                 returnArray.push([boxTitle, boxDes]);
               }
             });
+	    createMyBoxTable(returnArray);
          })
          console.log(returnArray);
          return returnArray;

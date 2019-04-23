@@ -4,7 +4,7 @@
 		<title>Personal Profile</title>
 		<link rel="stylesheet" href="BoxStyle.css">
 	</head>
-	<body>
+	<body onload="viewMyBoxes()">
 		<header>
 			<div class="topnav">
 				<headerText>Logged in as: <span class="currUser"></span></headerText>
@@ -21,7 +21,7 @@
 
 		<h1>Profile of <span class="currUser"></span></h1>
 
-		<table align= "center">
+		<table align= "center" id="niceTable">
 			<tr>
 				<th>Your Boxes</th>
 				<th></th>
