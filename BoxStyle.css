@@ -1,13 +1,14 @@
-body{
-  background-color: #ffeedf;
-  text-align: center;
-  margin-left: 0;
-  margin-top: 0;
-  margin-right: 0;
-  margin-bottom: 0;
-  height: 100%;
-  width: 100%;
+@font-face {
+    font-family: sans-serif;
+    src: url("./fonts/NotoSans-Regular.ttf");
 }
+body{
+  background-color: #eeeeee;
+  text-align: center;
+  margin: 0;
+  font-family: 'Noto Sans', sans-serif, Georgia;
+}
+
 .logOut{
   text-align: right;
 }
@@ -37,7 +38,7 @@ body{
   cursor: pointer;
 }
 .addbutton {
-  background-color: #8888EE;
+  background-color: #166088;
   border: none;
   color: white;
   padding: 13px 15px;
@@ -51,7 +52,7 @@ body{
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 75%;
+    text-align: center;
 }
 
 td, th {
@@ -77,10 +78,12 @@ a:hover, a:active {
 }
 
 
-header {
+
+.header {
   background-color: #166088;
   width: 100%;
-  position: fixed;
+  height: 60px;
+  position: static;
   top: 0;
   left: 0;
   right: 0;
@@ -90,11 +93,15 @@ header {
   overflow: hidden;
   float: right;
 }
+.header headerImg{
+  float: left;
+  padding: 5px 5px;
+}
 .topnav headerProfile, headerLogout, headerText {
   float: left;
   color: #f2f2f2;
   text-align: center;
-  padding: 20px 30px;
+  padding: 20px 20px;
   text-decoration: none;
   background-color: #166088;
 }
@@ -106,69 +113,32 @@ header {
   background-color: #D62C3F;
   color: black;
 }
-.open-button {
-  background-color: #555;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  position: fixed;
-  bottom: 23px;
-  right: 28px;
-  width: 280px;
-}
 
-/* The popup form - hidden by default */
-.form-popup {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  right: 15px;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
+.pageTitle {
+  background-color: #C0D6DF;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 20px
 }
-
-/* Add styles to the form container */
-.form-container {
-  max-width: 300px;
-  padding: 10px;
-  background-color: white;
+.pageContents {
+  background-color: #C0D6DF;
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
 }
-
-/* Full-width input fields */
-.form-container input[type=text], .form-container input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
+.pageContents table{
+  background-color: #dddddd;
+  margin: 10px;
+  display: inline-block;
 }
-
-/* When the inputs get focus, do something */
-.form-container input[type=text]:focus, .form-container input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
+.pageContents td, th {
+    border: 3px solid #cccccc;
+    text-align: left;
+     padding: 8px;
 }
+.pageContents tr:nth-child(even) {
+    background-color: #B0C5CE;
 
-/* Set a style for the submit/login button */
-.form-container .btn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
-}
-
-/* Add a red background color to the cancel button */
-.form-container .cancel {
-  background-color: red;
-}
-
-/* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
-  opacity: 1;
 }
