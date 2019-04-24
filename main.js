@@ -5,6 +5,7 @@
       function JoinFunction() {
         document.getElementById("demo").innerHTML = "Attempting to Join";
       }
+
 function createBoxTable(tableData) {
   //var tableData=viewAllBoxes();
   var table = document.getElementById("niceTable");
@@ -24,13 +25,13 @@ function createBoxTable(tableData) {
       cell.appendChild(document.createTextNode(cellData));
       row.appendChild(cell);
     });
-    var openbtn = document.createElement("BUTTON");
+    /*var openbtn = document.createElement("BUTTON");
       openbtn.innerHTML="Want to make a suggestion?";
       openbtn.class="open-button";
       openbtn.id="openForm";
-      var clickEvent = "openForm()"
+      var clickEvent = "openForm()";*/
 
-    /*var btn = document.createElement("BUTTON");
+    var btn = document.createElement("BUTTON");
       btn.innerHTML = "Want to make a suggestion?";
       btn.class = "delbutton";
       btn.id="addSuggestion";
@@ -41,11 +42,22 @@ function createBoxTable(tableData) {
       clickEvent += "\",";
       clickEvent += "document.getElementById(\"sugg\").value)";
       console.log(clickEvent);
-      btn.onclick= function() { addSuggestion(rowData[2],rowData[0],document.getElementById("sugg").value);};*/
+      var ident="suggested";
+      ident += rowData[0];
+      btn.onclick= function() { addSuggestion(rowData[2],rowData[0],document.getElementById(ident).value);};
       
+
+
       var btnhold = document.createElement('td');
       btnhold.appendChild(openbtn);
       row.appendChild(btnhold);
+      var inphold=document.createElement('td');
+      var input = document.createElement('input');
+      input.id = ident;
+      input.type="text";
+      input.placeholder="Add Suggestion Here";
+      inphold.appendChild(input);
+      row.appendChile(inphold);
 
 
     tableBody.appendChild(row);
@@ -56,12 +68,6 @@ function createBoxTable(tableData) {
   //document.body.appendChild(table);
   console.log(tableData.length);
   
-}
-function openForm() {
-  document.getElementByID("myForm").style.display = "block";
-}
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
 }
 function createSuggestionTable(tableName,tableData) {
   //var tableData=viewAllBoxes();
@@ -199,29 +205,29 @@ function createProfileTable(tableData) {
       }
 */
       function checkLogged() {
-	if (localStorage.getItem("currUsername") !== null) {
-	  location.href="ListOfBoxes.html";
-	}
+  if (localStorage.getItem("currUsername") !== null) {
+    location.href="ListOfBoxes.html";
+  }
       }
 
 
       function registerUser(uName, pass) {
-      	var usersRef = myDatabase.child("users");
-      	var newUser = usersRef.child(uName);
+        var usersRef = myDatabase.child("users");
+        var newUser = usersRef.child(uName);
         usersRef.orderByChild("username").equalTo(uName).on("value", function(snapshot) {
           if (snapshot.exists()) {
             console.log("Someone with that username already exists!"); //show taken user message
-      	    loginErrorMsg.innerHTML = "Someone with that username already exists!";
+            loginErrorMsg.innerHTML = "Someone with that username already exists!";
           } else {
             newUser.set({
-          		password: pass,
+              password: pass,
               username: uName
-          	});
+            });
             console.log("New user registered"); //take to home page
             //currUser.innerHTML = uName;
             localStorage.setItem("currUsername", uName);
             currUser = localStorage.getItem("currUsername");
-	          window.location.href="ListOfBoxes.html";
+            window.location.href="ListOfBoxes.html";
           }
         });
 
@@ -239,11 +245,11 @@ function createProfileTable(tableData) {
             });
             if (passWord.password === pass) {
               console.log("Successful Login"); //take to home page
-	            localStorage.setItem("currUsername", uName);
-	            window.location.href="ListOfBoxes.html";
+              localStorage.setItem("currUsername", uName);
+              window.location.href="ListOfBoxes.html";
             } else {
               console.log("Invalid username or password"); //show invalid user/pass message
-	            loginErrorMsg.innerHTML = "Invalid username or password";
+              loginErrorMsg.innerHTML = "Invalid username or password";
             }
           } else {
             console.log("Invalid username or password"); //show invalid user/pass message
@@ -255,14 +261,14 @@ function createProfileTable(tableData) {
 
       function logout() {
         //currUser.innerHTML = null;
-	      localStorage.removeItem("currUsername");
-	      window.location.href="index.html";
+        localStorage.removeItem("currUsername");
+        window.location.href="index.html";
       }
 
       function createBox(t, d) {
         var allBoxesRef = myDatabase.child("suggestion boxes");
         var newBox = allBoxesRef.child(localStorage.getItem("currUsername") +":"+t);
-	//console.log(currUser.innerText + ":" + t);
+  //console.log(currUser.innerText + ":" + t);
         newBox.once("value").then(function(snapshot) {
           if (snapshot.exists()) {
             console.log("A box with this title already exists!") //show error message for user trying to create a box they already have
@@ -274,7 +280,7 @@ function createProfileTable(tableData) {
             });
             var userRef = myDatabase.child("/users/" + localStorage.getItem("currUsername")  + "/my boxes");
             userRef.child(t).set({title: t});
-	    window.location.reload(false);
+      window.location.reload(false);
           }
         });
       }
@@ -342,7 +348,7 @@ function makeSuggestionTableHTML() {
             newBox.remove();
             var userRef = myDatabase.child("/users/" + localStorage.getItem("currUsername") + "/my boxes");
             userRef.child(t).remove();
-  	    window.location.reload(false);
+        window.location.reload(false);
           } else {
             console.log("This box does not exist") //this error message should be impossible to reach via the website
           }
@@ -379,11 +385,11 @@ function makeSuggestionTableHTML() {
       return array of suggestions in the form of strings
       */
       function viewSuggestions() {
-	if (localStorage.getItem("currUsername") === null) {
-	  location.href="index.html";
-	}
-	var t = decodeURIComponent(location.search.substring(1));
-	console.log(t);
+  if (localStorage.getItem("currUsername") === null) {
+    location.href="index.html";
+  }
+  var t = decodeURIComponent(location.search.substring(1));
+  console.log(t);
         var returnArray = [];
         var boxSugRef = myDatabase.child("suggestion boxes/"+localStorage.getItem("currUsername")+":"+t+"/suggestions");
         boxSugRef.once("value").then(function(snapshot) {
@@ -403,9 +409,9 @@ function makeSuggestionTableHTML() {
       returnArray[2] = Owner
       */
       function viewAllBoxes() {
-	if (localStorage.getItem("currUsername") === null) {
-	  location.href="index.html";
-	}
+  if (localStorage.getItem("currUsername") === null) {
+    location.href="index.html";
+  }
         var returnArray = [];
         var allBoxesRef = myDatabase.child("suggestion boxes");
         var index = 0;
@@ -416,11 +422,11 @@ function makeSuggestionTableHTML() {
               var boxOwner = childSnapshot.child("owner").val();
               returnArray.push([boxTitle, boxDes, boxOwner]);
            });
-	   createBoxTable(returnArray);
+     createBoxTable(returnArray);
 
          })
          console.log(returnArray);
-         //console.log(returnArray.length);	  
+         //console.log(returnArray.length);   
          return returnArray;
       }
 
@@ -430,9 +436,9 @@ function makeSuggestionTableHTML() {
       returnarray[1] = Description
       */
       function viewMyBoxes() {
-	if (localStorage.getItem("currUsername") === null) {
-	  location.href="index.html";
-	}
+  if (localStorage.getItem("currUsername") === null) {
+    location.href="index.html";
+  }
         var returnArray = [];
         var allBoxesRef = myDatabase.child("suggestion boxes");
         allBoxesRef.once("value").then(function(snapshot) {
