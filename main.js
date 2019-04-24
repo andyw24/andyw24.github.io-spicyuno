@@ -42,22 +42,22 @@ function createBoxTable(tableData) {
       clickEvent += "\",";
       clickEvent += "document.getElementById(\"sugg\").value)";
       console.log(clickEvent);
-      var ident="suggested";
-      ident += rowData[0];
-      btn.onclick= function() { addSuggestion(rowData[2],rowData[0],document.getElementById(ident).value);};
+      //var ident="suggested";
+      //ident += rowData[0];
+      btn.onclick= function() { addSuggestion(rowData[2],rowData[0],document.getElementById("sugg").value);};
       
 
 
       var btnhold = document.createElement('td');
       btnhold.appendChild(openbtn);
       row.appendChild(btnhold);
-      var inphold=document.createElement('td');
+      /*var inphold=document.createElement('td');
       var input = document.createElement('input');
       input.id = ident;
       input.type="text";
       input.placeholder="Add Suggestion Here";
       inphold.appendChild(input);
-      row.appendChile(inphold);
+      row.appendChile(inphold);*/
 
 
     tableBody.appendChild(row);
