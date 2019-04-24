@@ -24,7 +24,7 @@ function createBoxTable(tableData) {
       cell.appendChild(document.createTextNode(cellData));
       row.appendChild(cell);
     });
-    var btn = document.createElement("BUTTON");
+    /*var btn = document.createElement("BUTTON");
       btn.innerHTML = "Want to make a suggestion?";
       btn.class = "delbutton";
       btn.id="addSuggestion";
@@ -38,8 +38,35 @@ function createBoxTable(tableData) {
       btn.onclick= function() { addSuggestion(rowData[2],rowData[0],document.getElementById("sugg").value);};
       var btnhold = document.createElement('td');
       btnhold.appendChild(btn);
+      row.appendChild(btnhold);*/
+
+      var btn = document.createElement("BUTTON");
+      btn.innerHTML = "Want to make a suggestion?";
+      btn.class = "delbutton";
+      btn.id="addSuggestion";
+      var clickEvent = "addSuggestion(\"";
+      clickEvent += rowData[2];
+      clickEvent += "\",\"";
+      clickEvent += rowData[0];
+      clickEvent += "\",";
+      clickEvent += "document.getElementById(\"sugg\").value)";
+      console.log(clickEvent);
+      var ident="suggested";
+      ident += rowData[0];
+      btn.onclick= function() { addSuggestion(rowData[2],rowData[0],document.getElementById(ident).value);};
+      
+      var btnhold = document.createElement('td');
+      btnhold.appendChild(btn);
       row.appendChild(btnhold);
 
+      var inphold=document.createElement('td');
+      var input = document.createElement('input');
+      input.id = ident;
+      input.type="text";
+      input.placeholder="Add Suggestion Here";
+      inphold.appendChild(input);
+      row.appendChild(inphold);
+	  
 
     tableBody.appendChild(row);
   });
