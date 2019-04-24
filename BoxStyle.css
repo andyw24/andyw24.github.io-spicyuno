@@ -113,6 +113,7 @@ a:hover, a:active {
   background-color: #D62C3F;
   color: black;
 }
+
 .pageTitle {
   background-color: #C0D6DF;
   margin-left: 10%;
@@ -139,4 +140,5 @@ a:hover, a:active {
 }
 .pageContents tr:nth-child(even) {
     background-color: #B0C5CE;
+
 }
