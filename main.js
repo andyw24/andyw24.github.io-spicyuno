@@ -97,7 +97,7 @@ function createSuggestionTable(tableName,tableData) {
       cell.appendChild(document.createTextNode(rowData));
       row.appendChild(cell);
     //});
-    var btn = document.createElement("BUTTON");
+    /*var btn = document.createElement("BUTTON");
       btn.innerHTML = "Delete";
       btn.class = "delbutton";
       btn.id="delSugg";
@@ -110,7 +110,7 @@ function createSuggestionTable(tableName,tableData) {
       btn.onclick= function() { deleteSuggestion(tableName,rowData);};
       var btnhold = document.createElement('td');
       btnhold.appendChild(btn);
-      row.appendChild(btnhold);
+      row.appendChild(btnhold);*/
 
 
     tableBody.appendChild(row);
